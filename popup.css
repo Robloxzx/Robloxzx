@@ -1,0 +1,44 @@
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+
+  overflow: hidden;
+  position: relative;
+
+  transition: transform .2s ease;
+}
+
+
+.btn.gold {
+  background: linear-gradient(135deg, #FFD700, #FF0000);
+  color: #fff;
+}
+
+
+.btn.done {
+  background: linear-gradient(135deg, #FFFF66, #00FF66) !important;
+  color: #000 !important;
+}
+
+
+.btn.enter {
+  background: linear-gradient(135deg, #FFFF66, #00FF66) !important;
+  color: #000 !important;
+  display: none;
+}
+
+
+.btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+.btn:active {
+  transform: scale(0.96);
+}

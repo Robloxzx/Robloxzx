@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<link rel="stylesheet" href="popup.css">
+   
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>RealRax Scripts</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#f5f5f5;
+}
+
+
+
+.navbar{
+position:sticky;
+top:0;
+background:#d60000;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 30px;
+z-index:1000;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+width:34px;
+height:34px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.nav-links a{
+color:white;
+text-decoration:none;
+margin-left:18px;
+font-weight:bold;
+}
+
+/* HERO */
+
+.hero{
+position:relative;
+background:linear-gradient(#d60000,#ff4040);
+color:white;
+text-align:center;
+padding:90px 20px;
+overflow:hidden;
+}
+
+.hero h1{
+margin:0;
+font-size:40px;
+position:relative;
+z-index:2;
+}
+
+.hero p{
+position:relative;
+z-index:2;
+}
+
+#snowHero{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+}
+
+/* CONTAINER */
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:30px;
+}
+
+/* SEARCH */
+
+.search{
+text-align:center;
+margin-bottom:25px;
+}
+
+.search input{
+width:300px;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+/* CATEGORY */
+
+.categories{
+text-align:center;
+margin-bottom:25px;
+}
+
+.categories button{
+margin:5px;
+padding:8px 14px;
+border:none;
+background:#d60000;
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+}
+
+/* TRENDING CENTER */
+
+#trending{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+max-width:900px;
+margin:auto;
+gap:25px;
+}
+
+/* CARD */
+
+.card{
+background:white;
+border-radius:12px;
+box-shadow:0 8px 20px rgba(0,0,0,0.1);
+overflow:hidden;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 12px 28px rgba(0,0,0,0.2);
+}
+
+.card img{
+width:100%;
+height:150px;
+object-fit:cover;
+}
+
+.card h3{
+margin:15px;
+}
+
+.status{
+margin-left:15px;
+color:green;
+font-size:13px;
+}
+
+/* ปุ่ม Get Script */
+
+.card button{
+display:inline-block;
+margin:15px;
+background:#d60000;
+color:white;
+padding:10px 16px;
+border-radius:6px;
+border:none;
+cursor:pointer;
+}
+
+/* PAGINATION */
+
+.pagination{
+text-align:center;
+margin-top:40px;
+}
+
+.pagination button{
+margin:4px;
+padding:8px 12px;
+border:none;
+background:#d60000;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+.pagination button.active{
+background:#990000;
+}
+
+/* TITLES */
+
+.section-title{
+font-size:22px;
+margin-bottom:20px;
+text-align:center;
+}
+
+/* FOOTER */
+
+footer{
+margin-top:60px;
+background:#222;
+color:#ddd;
+text-align:center;
+padding:30px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+.grid{
+grid-template-columns:repeat(3,1fr);
+}
+}
+
+@media(max-width:700px){
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
+.hero h1{
+font-size:28px;
+}
+}
+   
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+<div class="logo">
+<img src="mascot1.png">
+<b>RealRax Scripts</b>
+</div>
+
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="download.html">Download Delta</a>
+<a href="https://www.youtube.com/@RealRaxScripts" target="_blank">YouTube</a>
+</div>
+
+</div>
+
+<div class="hero">
+
+<canvas id="snowHero"></canvas>
+
+<h1>RealRax Script Library</h1>
+<p>Free Roblox Scripts</p>
+
+</div>
+
+<div class="container">
+
+<div class="section-title">🔥 𝗧𝗿𝗲𝗻𝗱𝗶𝗻𝗴 𝗦𝗰𝗿𝗶𝗽𝘁𝘀</div>
+
+<div id="trending"></div>
+
+<br>
+
+<div class="search">
+<input id="search" placeholder="🔎 Search Script">
+</div>
+
+<div class="categories">
+<button onclick="filterCategory('all')">All</button>
+<button onclick="filterCategory('blox')">Blox Fruits</button>
+<button onclick="filterCategory('anime')">Anime</button>
+<button onclick="filterCategory('sim')">Simulator</button>
+</div>
+
+<div id="scripts" class="grid"></div>
+
+<div id="pagination" class="pagination"></div>
+
+</div>
+
+<footer>
+
+RealRax Scripts<br>
+Free Roblox Script Library<br><br>
+© 2026 RealRax
+
+</footer>
+
+<script>
+
+/* DEFAULT THUMB */
+
+const defaultThumb="https://img.youtube.com/vi/ueHLbrNRBlI/maxresdefault.jpg"
+
+/* DATABASE */
+
+const scripts=[
+   
+{ id:1, title:"🔥𝗡𝗲𝘄 𝗙𝗶𝘀𝗵 𝗦𝗰𝗿𝗶𝗽𝘁𝘀",cat:"blox",thumb:"https://img.youtube.com/vi/lUeRb1mXMOo/maxresdefault.jpg"},
+{ id:2, title:"🔥𝗡𝗲𝘄 𝗕𝗹𝗼𝘅 𝗙𝗿𝘂𝗶𝘁𝘀",cat:"blox",thumb:"https://img.youtube.com/vi/w4SMkisfER0/maxresdefault.jpg"},
+{ id:3, title:"🔥𝗡𝗲𝘄 𝗘𝘀𝗰𝗮𝗽𝗲 𝗦𝘂𝗻𝗮𝗺𝗶",cat:"blox",thumb:"https://img.youtube.com/vi/Cbf6cTNZU9k/maxresdefault.jpg"},
+{ id:4, title:"🔥𝗡𝗲𝘄 𝗘𝘀𝗰𝗮𝗽𝗲 𝗦𝘂𝗻𝗮𝗺𝗶",cat:"blox",thumb:"https://img.youtube.com/vi/Cd8V4aPgQlQ/maxresdefault.jpg"},
+{ id:5, title:"🔥𝗡𝗲𝘄 𝗘𝘀𝗰𝗮𝗽𝗲 𝗦𝘂𝗻𝗮𝗺𝗶",cat:"blox",thumb:"https://img.youtube.com/vi/Xt0T1P1VkFk/maxresdefault.jpg"},
+{ id:6, title:"🔥𝗡𝗲𝘄 𝗕𝗿𝗲𝗮𝗸 𝗟𝘂𝗰𝗸𝘆 𝗕𝗹𝗼𝗰𝗸",cat:"blox",thumb:"https://img.youtube.com/vi/I-gV7E5nQOw/maxresdefault.jpg"},
+{ id:7, title:"🔥𝗡𝗲𝘄 𝗕𝗹𝗼𝘅 𝗙𝗿𝘂𝗶𝘁𝘀",cat:"blox",thumb:"https://img.youtube.com/vi/9ljB0oY3Di0/maxresdefault.jpg"},
+{ id:8, title:"🔥𝗡𝗲𝘄 𝗕𝗹𝗼𝘅 𝗙𝗿𝘂𝗶𝘁𝘀",cat:"blox",thumb:"https://img.youtube.com/vi/7ODi4G1S7oI/maxresdefault.jpg"},
+   
+{ id:9, title:"🔥𝗡𝗲𝘄 𝗕𝗹𝗼𝘅 𝗙𝗿𝘂𝗶𝘁𝘀",cat:"blox",thumb:"https://img.youtube.com/vi/DHsN-UjeDdU/maxresdefault.jpg"},
+{ id:10, title:"🔥𝗡𝗲𝘄 𝗕𝗹𝗼𝘅 𝗙𝗿𝘂𝗶𝘁𝘀",cat:"blox",thumb:"https://img.youtube.com/vi/cpwUSz5DDeU/maxresdefault.jpg"},
+{ id:11, title:"🔥𝗡𝗲𝘄 𝗕𝗹𝗼𝘅 𝗙𝗿𝘂𝗶𝘁𝘀",cat:"blox",thumb:"https://img.youtube.com/vi/FDXR4wV7_xY/maxresdefault.jpg"},
+{ id:12, title:"🔥𝗡𝗲𝘄 𝗚𝗮𝗿𝗱𝗲𝗻 𝗛𝗼𝗿𝗶𝘇𝗼𝗻𝘀",cat:"blox",thumb:"https://img.youtube.com/vi/C1UuwAgE5Ds/maxresdefault.jpg"},
+{ id:13, title:"🔥𝗡𝗲𝘄 𝗕𝗹𝗼𝘅 𝗙𝗿𝘂𝗶𝘁𝘀",cat:"blox",thumb:"https://img.youtube.com/vi/-EPAv0hRwPc/maxresdefault.jpg"},
+{ id:14, title:"🔥𝗡𝗲𝘄 𝗕𝗹𝗼𝘅 𝗙𝗿𝘂𝗶𝘁𝘀",cat:"blox",thumb:"https://img.youtube.com/vi/FCfEYlq-RRg/maxresdefault.jpg"},
+{ id:15, title:"🔥𝗡𝗲𝘄 𝗕𝗹𝗼𝘅 𝗙𝗿𝘂𝗶𝘁𝘀",cat:"blox",thumb:"https://img.youtube.com/vi/ueHLbrNRBlI/maxresdefault.jpg"},
+{ id:16, title:"🔥𝗡𝗲𝘄 𝗕𝗹𝗼𝘅 𝗙𝗿𝘂𝗶𝘁𝘀",cat:"blox",thumb:"https://img.youtube.com/vi/-lCf-dBK1cs/maxresdefault.jpg"},
+
+{ id:17, title:"🔥𝗡𝗲𝘄 𝗕𝗹𝗼𝘅 𝗙𝗿𝘂𝗶𝘁𝘀",cat:"blox",thumb:"https://img.youtube.com/vi/NxcjNO1i2vw/maxresdefault.jpg"},
+{ id:18, title:"🔥𝗡𝗲𝘄 𝗕𝗹𝗼𝘅 𝗙𝗿𝘂𝗶𝘁𝘀",cat:"blox",thumb:"https://img.youtube.com/vi/8nZ66uuYJEA/maxresdefault.jpg"},
+   
+]
+
+scripts.reverse()
+
+/* TRENDING */
+
+let trending=document.getElementById("trending")
+
+scripts.slice(0,3).forEach((s,i)=>{
+
+let thumb=s.thumb || defaultThumb
+
+trending.innerHTML+=`
+
+<div class="card">
+
+<img src="${thumb}">
+
+<h3>${s.title}</h3>
+
+<div class="status">🟢 𝙒𝙤𝙧𝙠𝙞𝙣𝙜</div>
+
+<button onclick="openPage(${s.id})">
+📜 Get Script
+</button>
+
+</div>
+`
+
+})
+
+/* PAGINATION */
+
+let perPage=8
+let currentPage=1
+let filtered=[...scripts]
+
+function render(){
+
+let start=(currentPage-1)*perPage
+let end=start+perPage
+
+let pageData=filtered.slice(start,end)
+
+let grid=document.getElementById("scripts")
+grid.innerHTML=""
+
+pageData.forEach(s=>{
+
+let thumb=s.thumb || defaultThumb
+
+grid.innerHTML+=`
+
+<div class="card">
+
+<img src="${thumb}">
+
+<h3>${s.title}</h3>
+
+<div class="status">🟢 𝙒𝙤𝙧𝙠𝙞𝙣𝙜</div>
+
+<button onclick="openPage(${s.id})">
+📜 Get Script
+</button>
+
+</div>
+
+`
+
+})
+
+renderPagination()
+
+}
+
+function renderPagination(){
+
+let pages=Math.ceil(filtered.length/perPage)
+
+let html=""
+
+html+=`<button onclick="goPage(1)">«</button>`
+html+=`<button onclick="goPage(${currentPage-1})">‹</button>`
+
+let start=Math.max(1,currentPage-3)
+let end=Math.min(pages,currentPage+3)
+
+for(let i=start;i<=end;i++){
+
+html+=`<button class="${i==currentPage?'active':''}" onclick="goPage(${i})">${i}</button>`
+
+}
+
+html+=`<button onclick="goPage(${currentPage+1})">›</button>`
+html+=`<button onclick="goPage(${pages})">»</button>`
+
+document.getElementById("pagination").innerHTML=html
+
+}
+
+function goPage(p){
+
+let pages=Math.ceil(filtered.length/perPage)
+
+if(p<1)p=1
+if(p>pages)p=pages
+
+currentPage=p
+render()
+
+}
+
+document.getElementById("search").addEventListener("input",e=>{
+
+let t=e.target.value.toLowerCase()
+
+filtered=scripts.filter(s=>s.title.toLowerCase().includes(t))
+
+currentPage=1
+
+render()
+
+})
+
+function filterCategory(cat){
+
+if(cat=="all"){
+filtered=[...scripts]
+}else{
+filtered=scripts.filter(s=>s.cat==cat)
+}
+
+currentPage=1
+render()
+
+}
+
+render()
+
+/* HERO SNOW */
+
+const canvas=document.getElementById("snowHero")
+const ctx=canvas.getContext("2d")
+
+function resize(){
+canvas.width=canvas.offsetWidth
+canvas.height=canvas.offsetHeight
+}
+
+resize()
+window.addEventListener("resize",resize)
+
+let snow=[]
+
+for(let i=0;i<120;i++){
+
+snow.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*3+1,
+speed:Math.random()*1+0.5
+})
+
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+ctx.fillStyle="white"
+
+snow.forEach(f=>{
+
+ctx.beginPath()
+ctx.arc(f.x,f.y,f.r,0,Math.PI*2)
+ctx.fill()
+
+f.y+=f.speed
+
+if(f.y>canvas.height){
+f.y=0
+f.x=Math.random()*canvas.width
+}
+
+})
+
+requestAnimationFrame(draw)
+
+}
+
+draw()
+
+</script>
+
+<script src="ads.js"></script>
+<script src="antiadblock.js"></script>
+<script src="redirect.js"></script>
+
+<script src="popup.js" defer></script>
+
+<script>
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.onkeydown = function(e) {
+  if (e.key === "F12") return false;
+};
+</script>
+
+<script>
+function openPage(key){
+
+  const token = Math.random().toString(36).substring(2);
+  const tabId = Math.random().toString(36).substring(2);
+  const time = Date.now();
+
+  sessionStorage.setItem("access_token", token);
+  sessionStorage.setItem("access_time", time);
+  sessionStorage.setItem("tab_id", tabId);
+
+  window.location.href = "script1.html?key=" + key + "&t=" + token + "&tab=" + tabId;
+}
+</script>
+
+<script>
+window.addEventListener("pageshow", function(event) {
+  if (event.persisted || window.performance.navigation.type === 2) {
+    // ล้าง session เก่า
+    sessionStorage.clear();
+
+    // รีโหลดหน้า เพื่อบังคับ popup / เงื่อนไขใหม่
+    location.reload();
+  }
+});
+</script>
+   
+</body>
+</html>

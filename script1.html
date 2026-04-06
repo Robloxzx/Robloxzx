@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Copy Script</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#f5f5f5;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+width:34px;
+height:34px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.navbar{
+position:sticky;
+top:0;
+background:#d60000;
+color:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 30px;
+z-index:1000;
+}
+
+.navbar a{
+color:white;
+text-decoration:none;
+margin-left:15px;
+font-weight:bold;
+}
+
+
+
+#snow{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:0;
+pointer-events:none;
+}
+
+
+
+.container{
+max-width:900px;
+margin:auto;
+padding:40px 20px;
+position:relative;
+z-index:1;
+}
+
+
+
+.script-box{
+
+background:linear-gradient(180deg,#ffffff,#f3f3f3);
+padding:30px;
+border-radius:14px;
+
+box-shadow:
+0 12px 28px rgba(0,0,0,0.15),
+0 0 0 2px rgba(214,0,0,0.08);
+
+transition:.3s;
+
+}
+
+.script-box:hover{
+
+box-shadow:
+0 14px 34px rgba(0,0,0,0.2),
+0 0 0 2px rgba(214,0,0,0.15);
+
+}
+
+.title{
+font-size:26px;
+margin-bottom:10px;
+}
+
+
+
+.status{
+color:green;
+font-size:14px;
+margin-bottom:20px;
+}
+
+
+
+.section{
+margin-top:25px;
+}
+
+.section h3{
+margin-bottom:10px;
+}
+
+
+
+textarea{
+
+width:100%;
+height:220px;
+
+padding:12px;
+
+border-radius:8px;
+border:1px solid #ccc;
+
+font-family:monospace;
+
+resize:none;
+
+}
+
+
+
+.copy-btn{
+
+margin-top:14px;
+
+background:#d60000;
+color:white;
+
+border:none;
+
+padding:12px 22px;
+
+border-radius:8px;
+
+cursor:pointer;
+
+font-size:15px;
+
+}
+
+.copy-btn:hover{
+background:#b80000;
+}
+
+
+
+#toast{
+
+position:fixed;
+
+bottom:40px;
+left:50%;
+
+transform:translateX(-50%);
+
+background:#d60000;
+color:white;
+
+padding:12px 20px;
+
+border-radius:8px;
+
+opacity:0;
+
+transition:.4s;
+
+z-index:999;
+
+}
+
+#toast.show{
+opacity:1;
+}
+
+
+
+.back{
+
+display:inline-block;
+
+margin-top:20px;
+
+color:#d60000;
+text-decoration:none;
+font-weight:bold;
+
+}
+
+
+
+@media(max-width:600px){
+
+.title{
+font-size:22px;
+}
+
+textarea{
+height:180px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<canvas id="snow"></canvas>
+
+
+
+<div class="navbar">
+
+<div class="logo">
+  <img src="mascot1.png">
+  <b>RealRax Scripts</b>
+</div>
+
+<div>
+<a href="index.html">Home</a>
+<a href="index.html#scripts">Download</a>
+<a href="https://www.youtube.com/@RealRaxScripts" target="_blank">YouTube</a>
+</div>
+
+</div>
+
+<div class="container">
+
+<div class="script-box">
+
+<div class="title" id="title"></div>
+
+<div class="status">🟢 Script Status : Working</div>
+
+<div class="section">
+
+<h2>รายละเอียด</h2>
+
+<p>✨ <b>Roblox Auto Script Guide</b> 🎮</p>
+
+<p>
+สคริปต์นี้ถูกพัฒนาเพื่อช่วยให้การเล่นเกม Roblox สะดวกและรวดเร็วมากขึ้น
+ระบบภายในสามารถทำงานอัตโนมัติได้หลายอย่าง เช่น
+</p>
+
+<ul>
+<li>🧱 ฟาร์มไอเทม (Auto Item Farming)</li>
+<li>📈 ฟาร์มเลเวล (Auto Level Farming)</li>
+<li>⚙️ ทำเควสอัตโนมัติ (Auto Quest System)</li>
+</ul>
+
+<p>
+ตัวสคริปต์ถูกออกแบบมาให้รองรับ Executor หลายประเภท
+ทำให้สามารถใช้งานกับ Roblox Script Runner ยอดนิยมได้
+</p>
+
+<p>
+📋 ผู้ใช้สามารถคัดลอกสคริปต์ไปใช้งานได้ทันที
+โดยไม่ต้องแก้ไขโค้ดใด ๆ
+</p>
+
+<p>
+🚀 เหมาะสำหรับผู้เล่นที่ต้องการ
+ฟาร์มเร็วขึ้น ประหยัดเวลา และเพิ่มประสิทธิภาพในการเล่น Roblox
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>วิธีใช้งาน</h3>
+
+<div class="howto">
+
+<div class="step">
+<b>📌 วิธีใช้งาน | How to Use</b>
+</div>
+
+<div class="step">
+<b>1️⃣ 🎮 เข้าเกม Roblox ที่ต้องการ</b>
+<p>Open the Roblox game you want to use the script in.</p>
+</div>
+
+<div class="step">
+<b>2️⃣ 💻 เปิดโปรแกรม Executor</b>
+<p>Launch your Roblox Executor.</p>
+</div>
+
+<div class="step">
+<b>3️⃣ 📋 กดปุ่ม Copy Script ด้านล่าง</b>
+<p>Click the Copy Script button below.</p>
+</div>
+
+<div class="step">
+<b>4️⃣ 📥 นำสคริปต์ไปวางใน Executor</b>
+<p>Paste the script into the Executor.</p>
+</div>
+
+<div class="step">
+<b>5️⃣ ▶️ กด Execute เพื่อเริ่มใช้งาน</b>
+<p>Press Execute to start running the script.</p>
+</div>
+
+</div>
+
+</div>
+
+<textarea id="script" readonly></textarea>
+
+<br>
+
+<button class="copy-btn" onclick="copyScript()">
+📜 Copy Script
+</button>
+
+<br>
+
+<a class="back" href="index.html">← กลับหน้า Scripts</a>
+
+</div>
+
+</div>
+
+<div id="toast">Script Copied</div>
+
+
+<script>
+
+// 🔒 ระบบกันเข้าตรง
+const params = new URLSearchParams(window.location.search);
+
+let token = params.get("t");
+let tab = params.get("tab");
+
+let savedToken = sessionStorage.getItem("access_token");
+let savedTime = parseInt(sessionStorage.getItem("access_time"));
+let savedTab = sessionStorage.getItem("tab_id");
+
+let now = Date.now();
+
+if(
+  !token ||
+  token !== savedToken ||
+  tab !== savedTab ||
+  !savedTime ||
+  (now - savedTime > 30000)
+){
+  sessionStorage.clear();
+  window.location.href = "index.html";
+}
+
+
+
+const scripts=[
+  
+`loadstring(game:HttpGet("https://zenithhub.cloud/panel/script"))()`,
+`repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+loadstring(game:HttpGet("https://leaf-zeta.onrender.com/api/script"))()`,
+`loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()`,
+`loadstring(game:HttpGet("https://raw.githubusercontent.com/ekuve/ekuvehub/main/main.lua"))()`,
+`loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()`,
+`loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()`,
+`loadstring(game:HttpGet("https://raw.githubusercontent.com/dragonhubdev/dragonwitheveryone/refs/heads/main/Main-BF.lua"))()`,
+`loadstring(game:HttpGet("https://raw.githubusercontent.com/Anniecreate86/BloxFruits/refs/heads/main/BetaHub-BF"))()`,
+
+`Leaf HUB👇
+ 
+repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer
+loadstring(game:HttpGet("https://github.com/LeafHubAcademy/LeafHub/raw/refs/heads/main/Leaf.lua"))()
+ 
+OMG HUB👇
+ 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))()`,
+`loadstring(game:HttpGet("https://raw.githubusercontent.com/Jadelly/bloxfruit/refs/heads/main/HighLoader", true))()`,
+`repeat task.wait() until game:IsLoaded() and game:GetService("Players") and game.Players.LocalPlayer and game.Players.LocalPlayer:FindFirstChild("PlayerGui")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TEDDYHUB-FREEMIUM"))()`,
+`loadstring(game:HttpGet("https://raw.githubusercontent.com/meobeo8/a/a/a"))()`,
+`Config = {
+Team = "Pirates",
+Configuration = {
+HopWhenIdle = true,
+AutoHop = true,
+AutoHopDelay = 60 * 60,
+FpsBoost = false,
+BlackScreen = true
+},
+Items = {
+-- Melees
+AutoFullyMelees = true,
+-- Swords
+Saber = true,
+CursedDualKatana = true,
+-- Guns
+SoulGuitar = false,
+-- Upgrades
+RaceV2 = true
+},
+Settings = {
+StayInSea2UntilHaveDarkFragments = false
+}
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/hhl29042008-ops/script/refs/heads/main/cac"))()`,
+`local Settings = {
+JoinTeam = "Pirates"; -- Pirates/Marines
+Translator = true; -- true/false
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/PlockScripts/newredz/refs/heads/main/Remake-version.luau"))(Settings)`,
+`loadstring(game:HttpGet("https://raw.githubusercontent.com/longhihilonghihi-hub/MaruHubV1/refs/heads/main/MainV1.Lua "))()`,
+`repeat task.wait() until game:IsLoaded() and game:GetService("Players") and game.Players.LocalPlayer and game.Players.LocalPlayer:FindFirstChild("PlayerGui")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TEDDYHUB-FREEMIUM"))()
+`,
+
+`loadstring(game:HttpGet("https://raw.githubusercontent.com/HieuDepTrai-Z/Dev_Orange/refs/heads/main/OrangeHub.lua"))()`,
+`getgenv().SCRIPT_KEY = "KEYLESS" loadstring(game:HttpGet("https://raw.githubusercontent.com/DEKTHAT0XX/all_hub/refs/heads/main/DEKTAI.lua"))()`
+
+  
+]
+
+const titles=[
+  
+"🔥fish Auto farm",
+"🔥Blox Fruits Auto Farm",
+"🔥Escape T Sunami1",
+"🔥Escape T Sunami2",
+"🔥Escape T Sunami3",
+"🔥Break A Lucky Block",
+"🔥Blox Fruits Auto Farm",
+"🔥Blox Fruits Auto Farm",
+  
+"🔥Blox Fruits Auto Farm",
+"🔥Blox Fruits Auto Farm",
+"🔥Blox Fruits Auto Farm",
+"🔥garden Horizons",
+"🔥Blox Fruits Auto Farm",
+"🔥Blox Fruits Auto Farm",
+"🔥Blox Fruits Auto Farm",
+"🔥Blox Fruits Auto Farm",
+  
+"🔥Blox Fruits Auto Farm",
+"🔥Blox Fruits Auto Farm"
+
+]
+
+
+let id = parseInt(params.get("key")) || 1;
+
+if (id < 1 || id > scripts.length) {
+  id = 1
+}
+
+document.getElementById("script").value=scripts[id-1]
+
+document.getElementById("title").innerText=titles[id-1]
+
+
+
+function copyScript(){
+
+navigator.clipboard.writeText(
+document.getElementById("script").value
+)
+
+let toast=document.getElementById("toast")
+
+toast.classList.add("show")
+
+setTimeout(()=>{
+toast.classList.remove("show")
+},2000)
+
+}
+
+
+
+const canvas=document.getElementById("snow")
+const ctx=canvas.getContext("2d")
+
+function resize(){
+
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+}
+
+resize()
+
+window.addEventListener("resize",resize)
+
+let snow=[]
+
+for(let i=0;i<160;i++){
+
+snow.push({
+
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*3+1,
+speed:Math.random()*1+0.7
+
+})
+
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+ctx.fillStyle="white"
+
+snow.forEach(f=>{
+
+ctx.beginPath()
+
+ctx.arc(f.x,f.y,f.r,0,Math.PI*2)
+
+ctx.fill()
+
+f.y+=f.speed
+
+if(f.y>canvas.height){
+
+f.y=0
+f.x=Math.random()*canvas.width
+
+}
+
+})
+
+requestAnimationFrame(draw)
+
+}
+
+draw()
+
+</script>
+
+<script src="ads.js"></script>
+
+<script src="antiadblock.js"></script>
+
+<script>
+
+window.onload=function(){
+
+window.open(
+"https://airconditionstrodefist.com/xexd2an06?key=8b286cd67ff1ac791222566d220cda9d",
+"_blank"
+)
+
+}
+
+</script>
+
+<script src="antiadblock.js"></script>
+
+</body>
+</html>
