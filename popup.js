@@ -1,193 +1,172 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  const style = document.createElement("style");
-  style.innerHTML = `/* CSS YOU (unchanged) */ 
-  .pf-overlay{position:fixed; inset:0;backdrop-filter:blur(12px);background:rgba(0,0,0,.25);display:flex; justify-content:center; align-items:center;z-index:999999;font-family:sans-serif;}
-  .pf-box{display:flex; flex-direction:column; align-items:center; gap:20px;}
-  .pf-mascotWrap{opacity:0; transform:translateY(-60px) scale(0.92);transition: all 0.7s cubic-bezier(0.22,1,0.36,1);}
-  .pf-mascotWrap.show{opacity:1; transform:translateY(0) scale(1);}
-  .pf-panel{width:320px; padding:20px; border-radius:16px;background:rgba(255,255,255,0.08); backdrop-filter:blur(20px);text-align:center; box-shadow:0 0 15px rgba(255,255,255,0.5);opacity:0; transform:translateY(20px); transition: all 0.7s cubic-bezier(0.22,1,0.36,1);}
-  .pf-panel.show{opacity:1; transform:translateY(0);}
-  .pf-mascot{width:200px; filter:drop-shadow(0 0 15px rgba(255,255,255,0.6)); animation:aura 2s infinite alternate;}
-  @keyframes aura{0%{filter:drop-shadow(0 0 15px rgba(255,255,255,0.4));}50%{filter:drop-shadow(0 0 25px rgba(255,255,255,0.7));}100%{filter:drop-shadow(0 0 15px rgba(255,255,255,0.4));}}
-  .pf-btn{width:100%; padding:12px; margin-top:10px; border:none; border-radius:10px;cursor:pointer; font-weight:bold; transition:.2s; box-shadow:0 0 10px rgba(255,255,255,0.4);}
-  .pf-btn:hover{transform:translateY(-2px);}
-  .pf-btn:active{transform:scale(.96);}
-  .pf-red{position: relative;overflow: hidden;background: linear-gradient(90deg,#ffd84d,#ffb300,#ff6a00,#ff2a00,#ff0000);box-shadow:inset 0 2px 6px rgba(255,255,255,0.4),inset 0 -4px 8px rgba(0,0,0,0.25),0 0 12px rgba(255,120,0,0.6);color:#fff;}
-  .pf-green{position: relative;overflow: hidden;background: linear-gradient(90deg,#ffff66,#aaff00,#00ff66,#00cc55);box-shadow:inset 0 2px 6px rgba(255,255,255,0.4),inset 0 -4px 8px rgba(0,0,0,0.25),0 0 12px rgba(0,255,100,0.6);color:#000;}
-  .pf-disabled{opacity:.4; pointer-events:none;}
-  .pf-status{font-size:12px;color:white;}
-  .pf-status.done{color:white;}
-  .pf-progress{display:none;margin-top:10px;}
-  .pf-barBox{width:100%;height:8px;background:rgba(255,255,255,.1);border-radius:6px;overflow:hidden;}
-  .pf-bar{height:100%;width:0%;background:linear-gradient(90deg,yellow,limegreen);}
-  .pf-percent{text-align:right;font-size:12px;color:#fff;}
-  `;
-  document.head.appendChild(style);
+const style = document.createElement("style");
+style.innerHTML = `
+/* CSS YOU (unchanged) */
+.pf-overlay{position:fixed; inset:0;backdrop-filter:blur(12px);background:rgba(0,0,0,.25);display:flex; justify-content:center; align-items:center;z-index:999999;font-family:sans-serif;}
+.pf-box{display:flex; flex-direction:column; align-items:center; gap:20px;}
+.pf-mascotWrap{opacity:0; transform:translateY(-60px) scale(0.92);transition: all 0.7s cubic-bezier(0.22,1,0.36,1);}
+.pf-mascotWrap.show{opacity:1; transform:translateY(0) scale(1);}
+.pf-panel{width:320px; padding:20px; border-radius:16px;background:rgba(255,255,255,0.08); backdrop-filter:blur(20px);text-align:center; box-shadow:0 0 15px rgba(255,255,255,0.5);opacity:0; transform:translateY(20px); transition: all 0.7s cubic-bezier(0.22,1,0.36,1);}
+.pf-panel.show{opacity:1; transform:translateY(0);}
+.pf-mascot{width:200px; filter:drop-shadow(0 0 15px rgba(255,255,255,0.6)); animation:aura 2s infinite alternate;}
+@keyframes aura{0%{filter:drop-shadow(0 0 15px rgba(255,255,255,0.4));}50%{filter:drop-shadow(0 0 25px rgba(255,255,255,0.7));}100%{filter:drop-shadow(0 0 15px rgba(255,255,255,0.4));}}
+.pf-btn{width:100%; padding:12px; margin-top:10px; border:none; border-radius:10px;cursor:pointer; font-weight:bold; transition:.2s; box-shadow:0 0 10px rgba(255,255,255,0.4);}
+.pf-btn:hover{transform:translateY(-2px);}
+.pf-btn:active{transform:scale(.96);}
+.pf-red{position: relative;overflow: hidden;background: linear-gradient(90deg,#ffd84d,#ffb300,#ff6a00,#ff2a00,#ff0000);box-shadow:inset 0 2px 6px rgba(255,255,255,0.4),inset 0 -4px 8px rgba(0,0,0,0.25),0 0 12px rgba(255,120,0,0.6);color:#fff;}
+.pf-green{position: relative;overflow: hidden;background: linear-gradient(90deg,#ffff66,#aaff00,#00ff66,#00cc55);box-shadow:inset 0 2px 6px rgba(255,255,255,0.4),inset 0 -4px 8px rgba(0,0,0,0.25),0 0 12px rgba(0,255,100,0.6);color:#000;}
+.pf-red::after,.pf-green::after{content:"";position:absolute;top:0;left:0;width:100%;height:55%;background:linear-gradient(to bottom,rgba(255,255,255,0.65),rgba(255,255,255,0.25),rgba(255,255,255,0));border-radius:inherit;pointer-events:none;}
+.pf-red::before,.pf-green::before{content:"";position:absolute;top:0;left:-75%;width:50%;height:100%;background:linear-gradient(120deg,rgba(255,255,255,0),rgba(255,255,255,0.8),rgba(255,255,255,0));transform:skewX(-20deg);}
+.pf-red:hover::before,.pf-green:hover::before{animation:shine 0.9s ease forwards;}
+@keyframes shine{0%{left:-75%;}100%{left:125%;}}
+.pf-disabled{opacity:.4; pointer-events:none;}
+.pf-status{font-size:12px;color:white;}
+.pf-status.done{color:white;}
+.pf-progress{display:none;margin-top:10px;}
+.pf-barBox{width:100%;height:8px;background:rgba(255,255,255,.1);border-radius:6px;overflow:hidden;}
+.pf-bar{height:100%;width:0%;background:linear-gradient(90deg,yellow,limegreen);}
+.pf-percent{text-align:right;font-size:12px;color:#fff;}
+`;
 
-  document.body.insertAdjacentHTML("beforeend", `
-  <div class="pf-overlay">
-    <div class="pf-box">
-      <div class="pf-mascotWrap"><img src="mascot1.png" class="pf-mascot"></div>
-      <div class="pf-panel">
-        <div style="margin-bottom:10px;color:white;">💡ทำตามขั้นตอน</div>
+document.head.appendChild(style);
 
-        <button id="pfYT1" class="pf-btn pf-red">Like & Comment</button>
-        <div id="pfYTStatus1" class="pf-status">เพื่อปลดล็อกขั้นต่อไป!</div>
+document.body.insertAdjacentHTML("beforeend", `
+<div class="pf-overlay">
+<div class="pf-box">
 
-        <button id="pfYT2" class="pf-btn pf-red pf-disabled">Like & Comment</button>
-        <div id="pfYTStatus2" class="pf-status">ล็อกอยู่!</div>
+<div class="pf-mascotWrap">
+<img src="mascot1.png" class="pf-mascot">
+</div>
 
-        <!-- ปุ่ม 3 -->
-        <button id="pfYT3" class="pf-btn pf-red pf-disabled">Like & Comment</button>
-        <div id="pfYTStatus3" class="pf-status">ล็อกอยู่!</div>
+<div class="pf-panel">
 
-        <div id="pfProgress" class="pf-progress">
-          <div class="pf-barBox"><div id="pfBar" class="pf-bar"></div></div>
-          <div id="pfPercent" class="pf-percent">0%</div>
-        </div>
+<div style="margin-bottom:10px;color:white;">
+💡ทำตามขั้นตอน / 𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲 𝗦𝘁𝗲𝗽𝘀
+</div>
 
-        <button id="pfEnter" class="pf-btn pf-green" style="display:none;">Access</button>
+<button id="pfYT1" class="pf-btn pf-red">
+กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁
+</button>
 
-      </div>
-    </div>
-  </div>
-  `);
+<div id="pfYTStatus1" class="pf-status">
+เพื่อปลดล็อกขั้นต่อไป!
+</div>
 
-  const yt1=document.getElementById("pfYT1");
-  const yt2=document.getElementById("pfYT2");
-  const yt3=document.getElementById("pfYT3");
+<button id="pfYT2" class="pf-btn pf-red pf-disabled">
+กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁
+</button>
 
-  const ytStatus1=document.getElementById("pfYTStatus1");
-  const ytStatus2=document.getElementById("pfYTStatus2");
-  const ytStatus3=document.getElementById("pfYTStatus3");
+<div id="pfYTStatus2" class="pf-status">
+ล็อกอยู่!
+</div>
 
-  const bar=document.getElementById("pfBar");
-  const percent=document.getElementById("pfPercent");
-  const progress=document.getElementById("pfProgress");
-  const enter=document.getElementById("pfEnter");
+<!-- ✅ เพิ่มปุ่มใหม่ตรงนี้ -->
+<button id="pfYT3" class="pf-btn pf-red pf-disabled">
+กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁
+</button>
 
-  let done1=false, done2=false, done3=false;
-  let yt1Time=0, yt2Time=0, yt3Time=0;
-  let yt1Running=false, yt2Running=false, yt3Running=false;
-  let lastTime=0;
-  let progressStarted=false;
+<div id="pfYTStatus3" class="pf-status">
+ล็อกอยู่!
+</div>
 
-  yt1.onclick=()=>{
-    if(done1) return;
-    window.open("https://youtu.be/-lCf-dBK1cs?si=za60J3O5xnlSbgvd");
-    yt1Running=true;
-    lastTime=performance.now();
-    yt1.className="pf-btn pf-disabled";
-    ytStatus1.innerText="กรุณาทำตามขั้นตอน...";
-  };
+<div id="pfProgress" class="pf-progress">
+<div class="pf-barBox">
+<div id="pfBar" class="pf-bar"></div>
+</div>
+<div id="pfPercent" class="pf-percent">0%</div>
+</div>
 
-  yt2.onclick=()=>{
-    if(!done1||done2) return;
-    window.open("https://youtu.be/DHsN-UjeDdU?si=nmCZtki5fyylgO7W");
-    yt2Running=true;
-    lastTime=performance.now();
-    yt2.className="pf-btn pf-disabled";
-    ytStatus2.innerText="กรุณาทำตามขั้นตอน...";
-  };
+<button id="pfEnter"
+class="pf-btn pf-green"
+style="display:none;">
+𝗔𝗰𝗰𝗲𝘀𝘀 𝘁𝗵𝗲 𝘀𝗶𝘁𝗲 𝘁𝗼 𝗰𝗼𝗻𝘁𝗶𝗻𝘂𝗲
+</button>
 
-  yt3.onclick=()=>{
-    if(!done2||done3) return;
-    window.open("https://youtu.be/DHsN-UjeDdU?si=nmCZtki5fyylgO7W");
-    yt3Running=true;
-    lastTime=performance.now();
-    yt3.className="pf-btn pf-disabled";
-    ytStatus3.innerText="กรุณาทำตามขั้นตอน...";
-  };
+</div>
+</div>
+</div>
+`);
 
-  setInterval(()=>{
-    const now=performance.now();
-    const dt=(now-lastTime)/1000;
-    lastTime=now;
+const yt1=document.getElementById("pfYT1");
+const yt2=document.getElementById("pfYT2");
+const yt3=document.getElementById("pfYT3");
 
-    if(document.visibilityState==="hidden"){
+const ytStatus1=document.getElementById("pfYTStatus1");
+const ytStatus2=document.getElementById("pfYTStatus2");
+const ytStatus3=document.getElementById("pfYTStatus3");
 
-      if(yt1Running && !done1){
-        yt1Time+=dt;
-        if(yt1Time>=2){
-          done1=true;
-          yt1Running=false;
-          yt1.className="pf-btn pf-green";
-          ytStatus1.innerText="สำเร็จแล้ว✅";
-          yt2.classList.remove("pf-disabled");
-        }
-      }
+const bar=document.getElementById("pfBar");
+const percent=document.getElementById("pfPercent");
+const progress=document.getElementById("pfProgress");
+const enter=document.getElementById("pfEnter");
 
-      if(yt2Running && !done2){
-        yt2Time+=dt;
-        if(yt2Time>=2){
-          done2=true;
-          yt2Running=false;
-          yt2.className="pf-btn pf-green";
-          ytStatus2.innerText="สำเร็จแล้ว✅";
-          yt3.classList.remove("pf-disabled");
-        }
-      }
+let done1=false, done2=false, done3=false;
 
-      if(yt3Running && !done3){
-        yt3Time+=dt;
-        if(yt3Time>=2){
-          done3=true;
-          yt3Running=false;
-          yt3.className="pf-btn pf-green";
-          ytStatus3.innerText="สำเร็จแล้ว✅";
-        }
-      }
+yt1.onclick=()=>{
+window.open("https://youtu.be/-lCf-dBK1cs?si=za60J3O5xnlSbgvd");
 
-    }
+setTimeout(()=>{
+done1=true;
+yt1.className="pf-btn pf-green";
+ytStatus1.innerText="สำเร็จแล้ว✅";
+yt2.classList.remove("pf-disabled");
+},2000);
+};
 
-  },100);
+yt2.onclick=()=>{
+if(!done1) return;
 
-  document.addEventListener("visibilitychange", () => {
-    if(document.visibilityState === "visible" && done1 && done2 && done3 && !progressStarted){
-      progressStarted = true;
-      startProgress();
-    }
-  });
+window.open("https://youtu.be/DHsN-UjeDdU?si=nmCZtki5fyylgO7W");
 
-  function startProgress(){
+setTimeout(()=>{
+done2=true;
+yt2.className="pf-btn pf-green";
+ytStatus2.innerText="สำเร็จแล้ว✅";
+yt3.classList.remove("pf-disabled");
+},2000);
+};
 
-    progress.style.display="block";
+yt3.onclick=()=>{
+if(!done2) return;
 
-    let elapsed = 0;
-    let duration = 5000;
-    let last = performance.now();
+window.open("https://youtu.be/PUT-YOUR-VIDEO");
 
-    function animate(now){
+setTimeout(()=>{
+done3=true;
+yt3.className="pf-btn pf-green";
+ytStatus3.innerText="สำเร็จแล้ว✅";
+startProgress();
+},2000);
+};
 
-      if(document.visibilityState === "visible"){
-        let dt = now - last;
-        elapsed += dt;
-      }
+function startProgress(){
 
-      last = now;
+progress.style.display="block";
 
-      let t = elapsed / duration;
-      if(t > 1) t = 1;
+let val=0;
 
-      let eased = 1 - Math.pow(1 - t, 3);
-      let val = eased * 100;
+let interval=setInterval(()=>{
 
-      bar.style.width = val + "%";
-      percent.innerText = Math.floor(val) + "%";
+val+=5;
 
-      if(t < 1){
-        requestAnimationFrame(animate);
-      } else {
-        percent.innerText = "100%";
-        enter.style.display = "block";
-      }
+bar.style.width=val+"%";
+percent.innerText=val+"%";
 
-    }
+if(val>=100){
 
-    requestAnimationFrame(animate);
-  }
+clearInterval(interval);
 
-  enter.onclick=()=>document.querySelector(".pf-overlay").remove();
+enter.style.display="block";
+
+}
+
+},100);
+
+}
+
+enter.onclick=()=>{
+document.querySelector(".pf-overlay").remove();
+};
 
 });
