@@ -15,10 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
   .pf-btn:active{transform:scale(.96);}
   .pf-red{position: relative;overflow: hidden;background: linear-gradient(90deg,#ffd84d,#ffb300,#ff6a00,#ff2a00,#ff0000);box-shadow:inset 0 2px 6px rgba(255,255,255,0.4),inset 0 -4px 8px rgba(0,0,0,0.25),0 0 12px rgba(255,120,0,0.6);color:#fff;}
   .pf-green{position: relative;overflow: hidden;background: linear-gradient(90deg,#ffff66,#aaff00,#00ff66,#00cc55);box-shadow:inset 0 2px 6px rgba(255,255,255,0.4),inset 0 -4px 8px rgba(0,0,0,0.25),0 0 12px rgba(0,255,100,0.6);color:#000;}
-  .pf-red::after,.pf-green::after{content:"";position:absolute;top:0;left:0;width:100%;height:55%;background:linear-gradient(to bottom,rgba(255,255,255,0.65),rgba(255,255,255,0.25),rgba(255,255,255,0));border-radius:inherit;pointer-events:none;}
-  .pf-red::before,.pf-green::before{content:"";position:absolute;top:0;left:-75%;width:50%;height:100%;background:linear-gradient(120deg,rgba(255,255,255,0),rgba(255,255,255,0.8),rgba(255,255,255,0));transform:skewX(-20deg);}
-  .pf-red:hover::before,.pf-green:hover::before{animation:shine 0.9s ease forwards;}
-  @keyframes shine{0%{left:-75%;}100%{left:125%;}}
   .pf-disabled{opacity:.4; pointer-events:none;}
   .pf-status{font-size:12px;color:white;}
   .pf-status.done{color:white;}
@@ -34,16 +30,16 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="pf-box">
       <div class="pf-mascotWrap"><img src="mascot1.png" class="pf-mascot"></div>
       <div class="pf-panel">
-        <div style="margin-bottom:10px;color:white;">💡ทำตามขั้นตอน / 𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲 𝗦𝘁𝗲𝗽𝘀</div>
+        <div style="margin-bottom:10px;color:white;">💡ทำตามขั้นตอน</div>
 
-        <button id="pfYT1" class="pf-btn pf-red">กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁</button>
+        <button id="pfYT1" class="pf-btn pf-red">Like & Comment</button>
         <div id="pfYTStatus1" class="pf-status">เพื่อปลดล็อกขั้นต่อไป!</div>
 
-        <button id="pfYT2" class="pf-btn pf-red pf-disabled">กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁</button>
+        <button id="pfYT2" class="pf-btn pf-red pf-disabled">Like & Comment</button>
         <div id="pfYTStatus2" class="pf-status">ล็อกอยู่!</div>
 
-        <!-- เพิ่มปุ่มที่ 3 -->
-        <button id="pfYT3" class="pf-btn pf-red pf-disabled">กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁</button>
+        <!-- ปุ่ม 3 -->
+        <button id="pfYT3" class="pf-btn pf-red pf-disabled">Like & Comment</button>
         <div id="pfYTStatus3" class="pf-status">ล็อกอยู่!</div>
 
         <div id="pfProgress" class="pf-progress">
@@ -51,7 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
           <div id="pfPercent" class="pf-percent">0%</div>
         </div>
 
-        <button id="pfEnter" class="pf-btn pf-green" style="display:none;">𝗔𝗰𝗰𝗲𝘀𝘀 𝘁𝗵𝗲 𝘀𝗶𝘁𝗲 𝘁𝗼 𝗰𝗼𝗻𝘁𝗶𝗻𝘂𝗲</button>
+        <button id="pfEnter" class="pf-btn pf-green" style="display:none;">Access</button>
+
       </div>
     </div>
   </div>
@@ -65,12 +62,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const ytStatus2=document.getElementById("pfYTStatus2");
   const ytStatus3=document.getElementById("pfYTStatus3");
 
+  const bar=document.getElementById("pfBar");
+  const percent=document.getElementById("pfPercent");
+  const progress=document.getElementById("pfProgress");
+  const enter=document.getElementById("pfEnter");
+
   let done1=false, done2=false, done3=false;
   let yt1Time=0, yt2Time=0, yt3Time=0;
   let yt1Running=false, yt2Running=false, yt3Running=false;
   let lastTime=0;
-
-  let progressStarted=false; 
+  let progressStarted=false;
 
   yt1.onclick=()=>{
     if(done1) return;
@@ -92,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   yt3.onclick=()=>{
     if(!done2||done3) return;
-    window.open("https://youtu.be/VIDEO3");
+    window.open("https://youtu.be/DHsN-UjeDdU?si=nmCZtki5fyylgO7W");
     yt3Running=true;
     lastTime=performance.now();
     yt3.className="pf-btn pf-disabled";
@@ -117,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      if(yt2Running && !done2 && done1){
+      if(yt2Running && !done2){
         yt2Time+=dt;
         if(yt2Time>=2){
           done2=true;
@@ -128,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      if(yt3Running && !done3 && done2){
+      if(yt3Running && !done3){
         yt3Time+=dt;
         if(yt3Time>=2){
           done3=true;
@@ -150,10 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function startProgress(){
-    const progress=document.getElementById("pfProgress");
-    const bar=document.getElementById("pfBar");
-    const percent=document.getElementById("pfPercent");
-    const enter=document.getElementById("pfEnter");
 
     progress.style.display="block";
 
@@ -162,10 +159,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let last = performance.now();
 
     function animate(now){
+
       if(document.visibilityState === "visible"){
         let dt = now - last;
         elapsed += dt;
       }
+
       last = now;
 
       let t = elapsed / duration;
@@ -183,12 +182,12 @@ document.addEventListener("DOMContentLoaded", () => {
         percent.innerText = "100%";
         enter.style.display = "block";
       }
+
     }
 
     requestAnimationFrame(animate);
   }
 
-  document.getElementById("pfEnter").onclick=
-    ()=>document.querySelector(".pf-overlay").remove();
+  enter.onclick=()=>document.querySelector(".pf-overlay").remove();
 
 });
