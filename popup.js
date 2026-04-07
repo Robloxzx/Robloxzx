@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
   yt3.onclick=()=>{
     if(!done2||done3) return;
 
-    window.open("https://youtu.be/VIDEO3"); // ใส่วิดีโอที่ 3 ตรงนี้
+    window.open("https://youtu.be/DHsN-UjeDdU"); // ใส่วิดีโอที่ 3 ตรงนี้
 
     yt3Running=true;
     yt3.className="pf-btn pf-disabled";
