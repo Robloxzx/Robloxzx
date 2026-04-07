@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
 const style = document.createElement("style");
+
 style.innerHTML = `
 /* CSS YOU (unchanged) */
 .pf-overlay{position:fixed; inset:0;backdrop-filter:blur(12px);background:rgba(0,0,0,.25);display:flex; justify-content:center; align-items:center;z-index:999999;font-family:sans-serif;}
@@ -54,14 +55,14 @@ document.body.insertAdjacentHTML("beforeend", `
 </div>
 
 <button id="pfYT2" class="pf-btn pf-red pf-disabled">
-กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁
+กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁
 </button>
 
 <div id="pfYTStatus2" class="pf-status">
 ล็อกอยู่!
 </div>
 
-<!-- ✅ เพิ่มปุ่มใหม่ตรงนี้ -->
+<!-- ✅ ปุ่มใหม่ -->
 <button id="pfYT3" class="pf-btn pf-red pf-disabled">
 กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁
 </button>
@@ -87,86 +88,5 @@ style="display:none;">
 </div>
 </div>
 `);
-
-const yt1=document.getElementById("pfYT1");
-const yt2=document.getElementById("pfYT2");
-const yt3=document.getElementById("pfYT3");
-
-const ytStatus1=document.getElementById("pfYTStatus1");
-const ytStatus2=document.getElementById("pfYTStatus2");
-const ytStatus3=document.getElementById("pfYTStatus3");
-
-const bar=document.getElementById("pfBar");
-const percent=document.getElementById("pfPercent");
-const progress=document.getElementById("pfProgress");
-const enter=document.getElementById("pfEnter");
-
-let done1=false, done2=false, done3=false;
-
-yt1.onclick=()=>{
-window.open("https://youtu.be/-lCf-dBK1cs?si=za60J3O5xnlSbgvd");
-
-setTimeout(()=>{
-done1=true;
-yt1.className="pf-btn pf-green";
-ytStatus1.innerText="สำเร็จแล้ว✅";
-yt2.classList.remove("pf-disabled");
-},2000);
-};
-
-yt2.onclick=()=>{
-if(!done1) return;
-
-window.open("https://youtu.be/DHsN-UjeDdU?si=nmCZtki5fyylgO7W");
-
-setTimeout(()=>{
-done2=true;
-yt2.className="pf-btn pf-green";
-ytStatus2.innerText="สำเร็จแล้ว✅";
-yt3.classList.remove("pf-disabled");
-},2000);
-};
-
-yt3.onclick=()=>{
-if(!done2) return;
-
-window.open("https://youtu.be/PUT-YOUR-VIDEO");
-
-setTimeout(()=>{
-done3=true;
-yt3.className="pf-btn pf-green";
-ytStatus3.innerText="สำเร็จแล้ว✅";
-startProgress();
-},2000);
-};
-
-function startProgress(){
-
-progress.style.display="block";
-
-let val=0;
-
-let interval=setInterval(()=>{
-
-val+=5;
-
-bar.style.width=val+"%";
-percent.innerText=val+"%";
-
-if(val>=100){
-
-clearInterval(interval);
-
-enter.style.display="block";
-
-}
-
-},100);
-
-}
-
-enter.onclick=()=>{
-document.querySelector(".pf-overlay").remove();
-};
 
 });
