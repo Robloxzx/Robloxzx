@@ -13,8 +13,12 @@ document.addEventListener("DOMContentLoaded", () => {
   .pf-btn{width:100%; padding:12px; margin-top:10px; border:none; border-radius:10px;cursor:pointer; font-weight:bold; transition:.2s; box-shadow:0 0 10px rgba(255,255,255,0.4);}
   .pf-btn:hover{transform:translateY(-2px);}
   .pf-btn:active{transform:scale(.96);}
-  .pf-red{position: relative;overflow: hidden;background: linear-gradient(90deg,#ffd84d,#ffb300,#ff6a00,#ff2a00,#ff0000);color:#fff;}
-  .pf-green{background: linear-gradient(90deg,#ffff66,#aaff00,#00ff66,#00cc55);color:#000;}
+  .pf-red{position: relative;overflow: hidden;background: linear-gradient(90deg,#ffd84d,#ffb300,#ff6a00,#ff2a00,#ff0000);box-shadow:inset 0 2px 6px rgba(255,255,255,0.4),inset 0 -4px 8px rgba(0,0,0,0.25),0 0 12px rgba(255,120,0,0.6);color:#fff;}
+  .pf-green{position: relative;overflow: hidden;background: linear-gradient(90deg,#ffff66,#aaff00,#00ff66,#00cc55);box-shadow:inset 0 2px 6px rgba(255,255,255,0.4),inset 0 -4px 8px rgba(0,0,0,0.25),0 0 12px rgba(0,255,100,0.6);color:#000;}
+  .pf-red::after,.pf-green::after{content:"";position:absolute;top:0;left:0;width:100%;height:55%;background:linear-gradient(to bottom,rgba(255,255,255,0.65),rgba(255,255,255,0.25),rgba(255,255,255,0));border-radius:inherit;pointer-events:none;}
+  .pf-red::before,.pf-green::before{content:"";position:absolute;top:0;left:-75%;width:50%;height:100%;background:linear-gradient(120deg,rgba(255,255,255,0),rgba(255,255,255,0.8),rgba(255,255,255,0));transform:skewX(-20deg);}
+  .pf-red:hover::before,.pf-green:hover::before{animation:shine 0.9s ease forwards;}
+  @keyframes shine{0%{left:-75%;}100%{left:125%;}}
   .pf-disabled{opacity:.4; pointer-events:none;}
   .pf-status{font-size:12px;color:white;}
   .pf-status.done{color:white;}
@@ -30,64 +34,28 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="pf-box">
       <div class="pf-mascotWrap"><img src="mascot1.png" class="pf-mascot"></div>
       <div class="pf-panel">
+        <div style="margin-bottom:10px;color:white;">💡ทำตามขั้นตอน / 𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲 𝗦𝘁𝗲𝗽𝘀</div>
 
-        <div style="margin-bottom:10px;color:white;">
-        💡ทำตามขั้นตอน / 𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲 𝗦𝘁𝗲𝗽𝘀
-        </div>
+        <button id="pfYT1" class="pf-btn pf-red">กดไลก์ คอมเมนต์</button>
+        <div id="pfYTStatus1" class="pf-status">เพื่อปลดล็อกขั้นต่อไป!</div>
 
-        <button id="pfYT1" class="pf-btn pf-red">
-        กดไลก์ คอมเมนต์
-        </button>
+        <button id="pfYT2" class="pf-btn pf-red pf-disabled">กดไลก์ คอมเมนต์</button>
+        <div id="pfYTStatus2" class="pf-status">ล็อกอยู่!</div>
 
-        <div id="pfYTStatus1" class="pf-status">
-        เพื่อปลดล็อกขั้นต่อไป!
-        </div>
-
-        <button id="pfYT2" class="pf-btn pf-red pf-disabled">
-        กดไลก์ คอมเมนต์
-        </button>
-
-        <div id="pfYTStatus2" class="pf-status">
-        ล็อกอยู่!
-        </div>
-
-        <!-- ปุ่มใหม่ -->
-        <button id="pfYT3" class="pf-btn pf-red pf-disabled">
-        กดไลก์ คอมเมนต์
-        </button>
-
-        <div id="pfYTStatus3" class="pf-status">
-        ล็อกอยู่!
-        </div>
+        <!-- เพิ่มปุ่ม 3 -->
+        <button id="pfYT3" class="pf-btn pf-red pf-disabled">กดไลก์ คอมเมนต์</button>
+        <div id="pfYTStatus3" class="pf-status">ล็อกอยู่!</div>
 
         <div id="pfProgress" class="pf-progress">
-          <div class="pf-barBox">
-            <div id="pfBar" class="pf-bar"></div>
-          </div>
+          <div class="pf-barBox"><div id="pfBar" class="pf-bar"></div></div>
           <div id="pfPercent" class="pf-percent">0%</div>
         </div>
 
-        <button id="pfEnter"
-        class="pf-btn pf-green"
-        style="display:none;">
-        𝗔𝗰𝗰𝗲𝘀𝘀
-        </button>
-
+        <button id="pfEnter" class="pf-btn pf-green" style="display:none;">𝗔𝗰𝗰𝗲𝘀𝘀</button>
       </div>
     </div>
   </div>
   `);
-
-  /* animation เดิม */
-  const mascotWrap = document.querySelector(".pf-mascotWrap");
-  const panel = document.querySelector(".pf-panel");
-
-  requestAnimationFrame(()=>{
-    mascotWrap.classList.add("show");
-    setTimeout(()=> panel.classList.add("show"), 400);
-  });
-
-  /* elements */
 
   const yt1=document.getElementById("pfYT1");
   const yt2=document.getElementById("pfYT2");
@@ -106,102 +74,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let yt1Time=0, yt2Time=0, yt3Time=0;
   let yt1Running=false, yt2Running=false, yt3Running=false;
+  let lastTime=0;
 
-  let lastTime=performance.now();
-
-  /* ลิงก์ YouTube */
+  let progressStarted=false;
 
   yt1.onclick=()=>{
     if(done1) return;
     window.open("https://youtu.be/-lCf-dBK1cs");
     yt1Running=true;
+    lastTime=performance.now();
   };
 
   yt2.onclick=()=>{
     if(!done1||done2) return;
     window.open("https://youtu.be/DHsN-UjeDdU");
     yt2Running=true;
+    lastTime=performance.now();
   };
 
   yt3.onclick=()=>{
     if(!done2||done3) return;
     window.open("https://youtu.be/7ODi4G1S7oI");
     yt3Running=true;
-  };
-
-  setInterval(()=>{
-
-    const now=performance.now();
-    const dt=(now-lastTime)/1000;
-    lastTime=now;
-
-    if(document.visibilityState==="hidden"){
-
-      if(yt1Running&&!done1){
-        yt1Time+=dt;
-        if(yt1Time>=2){
-          done1=true;
-          yt1Running=false;
-          yt1.className="pf-btn pf-green";
-          ytStatus1.innerText="สำเร็จแล้ว✅";
-          yt2.classList.remove("pf-disabled");
-        }
-      }
-
-      if(yt2Running&&!done2){
-        yt2Time+=dt;
-        if(yt2Time>=2){
-          done2=true;
-          yt2Running=false;
-          yt2.className="pf-btn pf-green";
-          ytStatus2.innerText="สำเร็จแล้ว✅";
-          yt3.classList.remove("pf-disabled");
-        }
-      }
-
-      if(yt3Running&&!done3){
-        yt3Time+=dt;
-        if(yt3Time>=2){
-          done3=true;
-          yt3Running=false;
-          yt3.className="pf-btn pf-green";
-          ytStatus3.innerText="สำเร็จแล้ว✅";
-        }
-      }
-
-    }
-
-  },100);
-
-  document.addEventListener("visibilitychange", () => {
-
-    if(document.visibilityState==="visible"
-      && done1 && done2 && done3){
-
-      progress.style.display="block";
-
-      let val=0;
-
-      let timer=setInterval(()=>{
-
-        val+=2;
-
-        bar.style.width=val+"%";
-        percent.innerText=val+"%";
-
-        if(val>=100){
-          clearInterval(timer);
-          enter.style.display="block";
-        }
-
-      },50);
-
-    }
-
-  });
-
-  enter.onclick=()=>{
-    document.querySelector(".pf-overlay").remove();
+    lastTime=performance.now();
   };
 
 });
