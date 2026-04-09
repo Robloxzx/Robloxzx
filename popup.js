@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
         <button id="pfYT2" class="pf-btn pf-red pf-disabled">กดไลก์ คอมเมนต์</button>
         <div id="pfYTStatus2" class="pf-status">ล็อกอยู่!</div>
 
-        <!-- เพิ่มปุ่ม 3 -->
         <button id="pfYT3" class="pf-btn pf-red pf-disabled">กดไลก์ คอมเมนต์</button>
         <div id="pfYTStatus3" class="pf-status">ล็อกอยู่!</div>
 
@@ -56,6 +55,14 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   </div>
   `);
+
+  const mascotWrap = document.querySelector(".pf-mascotWrap");
+  const panel = document.querySelector(".pf-panel");
+
+  requestAnimationFrame(()=>{
+    mascotWrap.classList.add("show");
+    setTimeout(()=> panel.classList.add("show"), 400);
+  });
 
   const yt1=document.getElementById("pfYT1");
   const yt2=document.getElementById("pfYT2");
@@ -72,31 +79,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let done1=false, done2=false, done3=false;
 
-  let yt1Time=0, yt2Time=0, yt3Time=0;
-  let yt1Running=false, yt2Running=false, yt3Running=false;
-  let lastTime=0;
-
-  let progressStarted=false;
-
   yt1.onclick=()=>{
-    if(done1) return;
     window.open("https://youtu.be/-lCf-dBK1cs");
-    yt1Running=true;
-    lastTime=performance.now();
+    done1=true;
+    yt2.classList.remove("pf-disabled");
   };
 
   yt2.onclick=()=>{
-    if(!done1||done2) return;
     window.open("https://youtu.be/DHsN-UjeDdU");
-    yt2Running=true;
-    lastTime=performance.now();
+    done2=true;
+    yt3.classList.remove("pf-disabled");
   };
 
   yt3.onclick=()=>{
-    if(!done2||done3) return;
     window.open("https://youtu.be/7ODi4G1S7oI");
-    yt3Running=true;
-    lastTime=performance.now();
+    done3=true;
   };
 
 });
