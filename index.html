@@ -360,7 +360,7 @@ let trending=document.getElementById("trending")
 trending.innerHTML=""
 
 scripts
-.filter(s=>s.trending)
+.filter(s=>s.trending==true)
 .slice(0,3)
 .forEach(s=>{
 
@@ -481,7 +481,7 @@ render()
 
 })
 
-function filterCategory(cat){
+filtered=scripts.filter(s=>s.category==cat)
 
 if(cat=="all"){
 
