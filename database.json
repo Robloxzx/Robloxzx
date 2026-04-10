@@ -1,0 +1,104 @@
+{
+  "scripts":[
+    {
+      "id":1,
+      "title":"🔥 fish Auto farm",
+      "category":"blox",
+      "thumb":"https://img.youtube.com/vi/lUeRb1mXMOo/maxresdefault.jpg",
+      "script":"loadstring(game:HttpGet(\"https://zenithhub.cloud/panel/script\"))()",
+      "status":"working",
+      "trending":true
+    },
+
+    {
+      "id":2,
+      "title":"🔥 Blox Fruits Auto Farm",
+      "category":"blox",
+      "thumb":"https://img.youtube.com/vi/w4SMkisfER0/maxresdefault.jpg",
+      "script":"repeat wait() until game:IsLoaded() and game.Players.LocalPlayer loadstring(game:HttpGet(\"https://leaf-zeta.onrender.com/api/script\"))()",
+      "status":"working",
+      "trending":true
+    },
+
+    {
+      "id":3,
+      "title":"🔥 Escape T Sunami1",
+      "category":"other",
+      "thumb":"https://img.youtube.com/vi/Cbf6cTNZU9k/maxresdefault.jpg",
+      "script":"loadstring(game:HttpGet(\"https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua\", true))()",
+      "status":"working",
+      "trending":true
+    },
+
+    {
+      "id":4,
+      "title":"🔥 Escape T Sunami2",
+      "category":"other",
+      "thumb":"https://img.youtube.com/vi/Cd8V4aPgQlQ/maxresdefault.jpg",
+      "script":"loadstring(game:HttpGet(\"https://raw.githubusercontent.com/ekuve/ekuvehub/main/main.lua\"))()",
+      "status":"working",
+      "trending":false
+    },
+
+    {
+      "id":5,
+      "title":"🔥 Escape T Sunami3",
+      "category":"other",
+      "thumb":"https://img.youtube.com/vi/Xt0T1P1VkFk/maxresdefault.jpg",
+      "script":"loadstring(game:HttpGet(\"https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua\", true))()",
+      "status":"working",
+      "trending":false
+    },
+
+    {
+      "id":6,
+      "title":"🔥 Break A Lucky Block",
+      "category":"other",
+      "thumb":"https://img.youtube.com/vi/I-gV7E5nQOw/maxresdefault.jpg",
+      "script":"loadstring(game:HttpGet(\"https://raw.githubusercontent.com/dragonhubdev/dragonwitheveryone/refs/heads/main/Main-BF.lua\"))()",
+      "status":"working",
+      "trending":false
+    },
+
+    {
+      "id":7,
+      "title":"🔥 Blox Fruits Auto Farm",
+      "category":"blox",
+      "thumb":"https://img.youtube.com/vi/9ljB0oY3Di0/maxresdefault.jpg",
+      "script":"loadstring(game:HttpGet(\"https://raw.githubusercontent.com/Anniecreate86/BloxFruits/refs/heads/main/BetaHub-BF\"))()",
+      "status":"working",
+      "trending":false
+    },
+
+    {
+      "id":8,
+      "title":"🔥 Blox Fruits Auto Farm",
+      "category":"blox",
+      "thumb":"https://img.youtube.com/vi/7ODi4G1S7oI/maxresdefault.jpg",
+      "script":"loadstring(game:HttpGet(\"https://raw.githubusercontent.com/Jadelly/bloxfruit/refs/heads/main/HighLoader\", true))()",
+      "status":"working",
+      "trending":false
+    },
+
+    {
+      "id":9,
+      "title":"🔥 Blox Fruits Auto Farm",
+      "category":"blox",
+      "thumb":"https://img.youtube.com/vi/DHsN-UjeDdU/maxresdefault.jpg",
+      "script":"loadstring(game:HttpGet(\"https://raw.githubusercontent.com/meobeo8/a/a/a\"))()",
+      "status":"working",
+      "trending":false
+    },
+
+    {
+      "id":10,
+      "title":"🔥 garden Horizons",
+      "category":"other",
+      "thumb":"https://img.youtube.com/vi/C1UuwAgE5Ds/maxresdefault.jpg",
+      "script":"loadstring(game:HttpGet(\"https://raw.githubusercontent.com/longhihilonghihi-hub/MaruHubV1/refs/heads/main/MainV1.Lua\"))()",
+      "status":"working",
+      "trending":false
+    }
+
+  ]
+}
