@@ -12,10 +12,18 @@
 
 <style>
 
+:root{
+--main:#f4b942;
+--dark:#e09a2d;
+--light:#ffd166;
+--active:#b86b1b;
+--bg:#fff6e5;
+}
+
 body{
 margin:0;
 font-family:Arial;
-background:#fff6e5;
+background:var(--bg);
 }
 
 
@@ -23,7 +31,7 @@ background:#fff6e5;
 .navbar{
 position:sticky;
 top:0;
-background:#f4b942;
+background:var(--main);
 color:white;
 display:flex;
 justify-content:space-between;
@@ -56,7 +64,7 @@ font-weight:bold;
 
 .hero{
 position:relative;
-background:linear-gradient(#e09a2d,#ffd166);
+background:linear-gradient(var(--dark),var(--light));
 color:white;
 text-align:center;
 padding:90px 20px;
@@ -116,7 +124,7 @@ margin-bottom:25px;
 margin:5px;
 padding:8px 14px;
 border:none;
-background:#f4b942;
+background:var(--main);
 color:white;
 border-radius:6px;
 cursor:pointer;
@@ -176,7 +184,7 @@ font-size:13px;
 .card button{
 display:inline-block;
 margin:15px;
-background:#f4b942;
+background:var(--main);
 color:white;
 padding:10px 16px;
 border-radius:6px;
@@ -195,14 +203,14 @@ margin-top:40px;
 margin:4px;
 padding:8px 12px;
 border:none;
-background:#f4b942;
+background:var(--main);
 color:white;
 border-radius:5px;
 cursor:pointer;
 }
 
 .pagination button.active{
-background:#b86b1b;
+background:var(--active);
 }
 
 /* TITLES */
