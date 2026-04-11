@@ -35,11 +35,12 @@
       "script": "loadstring(game:HttpGet(\"URL2\"))()"
     },
     {
-      "id": 1775926960090,
+      "id": 1775927262322,
       "title": "🔥 Test Script",
-      "category": "anime",
-      "thumb": "https://youtu.be/sW3hEop_Yyk?si=wXj873WM-NWt5KVS",
-      "script": "ieroeirrtpitikjkffffffffffffffffgfgfsfdsf"
+      "category": "blox",
+      "thumb": "https://img.youtube.com/vi/sW3hEop_Yyk/maxresdefault.jpg",
+      "script": "loadstring(game:HttpGet(\"https://zenithhub.cloud/panel/script\"))()",
+      "trending": false
     }
   ]
 }
