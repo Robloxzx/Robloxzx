@@ -3,6 +3,7 @@
 <head>
 
 <meta charset="UTF-8">
+<script src="database.js"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>Admin Panel</title>
@@ -138,32 +139,19 @@ alert("Wrong Password");
 
 /* LOAD DATA */
 
-let data={scripts:[]};
+let data;
 
 function loadScripts(){
 
-fetch("database.js")
-.then(res=>res.json())
-.then(json=>{
+if(typeof data==="undefined"){
 
-data=json;
-
-if(!data.scripts){
-data.scripts=[];
-}
-
-render();
-
-})
-.catch(err=>{
-
-/* ถ้าโหลดไม่ได้ ใช้ค่าเริ่มต้น */
+alert("database.js not loaded");
 
 data={scripts:[]};
 
-render();
+}
 
-});
+render();
 
 }
 
