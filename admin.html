@@ -139,8 +139,6 @@ alert("Wrong Password");
 
 /* LOAD DATA */
 
-let data;
-
 function loadScripts(){
 
 if(typeof data==="undefined"){
@@ -149,6 +147,12 @@ alert("database.js not loaded");
 
 data={scripts:[]};
 
+}
+
+/* ⭐ เพิ่มตรงนี้ */
+
+if(!data.scripts){
+data.scripts=[];
 }
 
 render();
@@ -396,16 +400,24 @@ render();
 
 function download(){
 
+/* แปลงข้อมูลให้รองรับ script ทุกแบบ */
+
+let safeData = JSON.stringify(data,null,2)
+.replace(/\\/g,"\\\\")
+.replace(/`/g,"\\`");
+
+/* export เป็น JS */
+
 let blob=new Blob(
-[JSON.stringify(data,null,2)],
-{type:"application/json"}
+["var data = "+safeData],
+{type:"application/javascript"}
 );
 
 let a=document.createElement("a");
 
 a.href=URL.createObjectURL(blob);
 
-a.download="database.json";
+a.download="database.js";
 
 a.click();
 
