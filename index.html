@@ -335,12 +335,15 @@ const defaultThumb="https://img.youtube.com/vi/ueHLbrNRBlI/maxresdefault.jpg"
    
 let scripts=[]
 let filtered=[]
+let trendingData=[]
 
 fetch("database.json")
 .then(res=>res.json())
 .then(data=>{
 
 scripts=data.scripts.reverse()
+
+trendingData=data.trending || []
 
 filtered=[...scripts]
 
