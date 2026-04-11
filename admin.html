@@ -61,11 +61,18 @@ border-radius:10px;
 
 <h2>Admin Login</h2>
 
-<input id="password" type="password" placeholder="Enter Password">
+<form onsubmit="login(); return false;">
 
-<button onclick="login()">
+<input 
+id="password" 
+type="password" 
+placeholder="Enter Password">
+
+<button type="submit">
 Login
 </button>
+
+</form>
 
 </div>
 
@@ -108,11 +115,15 @@ const ADMIN_PASSWORD="551901";
 
 function login(){
 
-let pass=document.getElementById("password").value;
+let pass=document
+.getElementById("password")
+.value
+.trim();
 
 if(pass===ADMIN_PASSWORD){
 
 document.getElementById("loginBox").style.display="none";
+
 document.getElementById("panelBox").style.display="block";
 
 loadScripts();
@@ -137,13 +148,24 @@ fetch("database.json")
 
 data=json;
 
-/* กัน scripts หาย */
-
 if(!data.scripts){
 data.scripts=[];
 }
 
 render();
+
+})
+.catch(err=>{
+
+/* ถ้าโหลดไม่ได้ ใช้ค่าเริ่มต้น */
+
+data={scripts:[]};
+
+render();
+
+});
+
+}
 
 /* RENDER */
 
