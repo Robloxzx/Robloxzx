@@ -114,6 +114,8 @@ oninput="searchScript()">
 
 const ADMIN_PASSWORD="551901";
 
+var data;
+
 function login(){
 
 let pass=document
@@ -123,6 +125,8 @@ let pass=document
 
 if(pass===ADMIN_PASSWORD){
 
+console.log("Login button pressed");
+  
 document.getElementById("loginBox").style.display="none";
 
 document.getElementById("panelBox").style.display="block";
@@ -141,18 +145,28 @@ alert("Wrong Password");
 
 function loadScripts(){
 
+console.log("loadScripts called");
+console.log("DATA =", data);
+
 if(typeof data==="undefined"){
 
 alert("database.js not loaded");
 
-data={scripts:[]};
+data={
+scripts:[],
+trending:[]
+};
 
 }
 
-/* ⭐ เพิ่มตรงนี้ */
+/* กัน scripts หรือ trending หาย */
 
 if(!data.scripts){
 data.scripts=[];
+}
+
+if(!data.trending){
+data.trending=[];
 }
 
 render();
@@ -162,6 +176,8 @@ render();
 /* RENDER */
 
 function render(){
+
+console.log("Rendering scripts:", data.scripts);
 
 let list=document.getElementById("list");
 
