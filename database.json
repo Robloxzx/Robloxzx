@@ -4,16 +4,19 @@
       "id":1,
       "title":"🔥 Escape T Sunami1",
       "thumb":"https://img.youtube.com/vi/8nZ66uuYJEA/maxresdefault.jpg"
+      "script":"loadstring(game:HttpGet(\"URL\"))()"
     },
     {
       "id":2,
       "title":"🔥 Blox Fruits Auto Farm",
       "thumb":"https://img.youtube.com/vi/8nZ66uuYJEAt/maxresdefault.jpg"
+      "script":"loadstring(game:HttpGet(\"URL\"))()"
     },
     {
       "id":3,
       "title":"🔥 fish Auto farm",
       "thumb":"https://img.youtube.com/8nZ66uuYJEA/maxresdefault.jpg"
+      "script":"loadstring(game:HttpGet(\"URL\"))()"
     }
   ],
 
