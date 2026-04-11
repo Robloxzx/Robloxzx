@@ -39,7 +39,7 @@
       "title": "🔥 Test Script",
       "category": "blox",
       "thumb": "https://img.youtube.com/vi/sW3hEop_Yyk/maxresdefault.jpg",
-      "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua\", true))()",
+      "script": `loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()`
       "trending": false
     }
   ]
