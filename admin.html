@@ -194,6 +194,13 @@ thumbInput="https://img.youtube.com/vi/"+videoId+"/maxresdefault.jpg";
 }
 
 }
+
+let scriptText=document.getElementById("script").value.trim();
+
+if(scriptText===""){
+alert("Script cannot be empty");
+return;
+}
   
 /* สร้าง script */
 
@@ -207,7 +214,7 @@ category:document.getElementById("category").value,
 
 thumb:thumbInput,
 
-script:document.getElementById("script").value.trim(),
+script:scriptText,
 
 trending:false
 
