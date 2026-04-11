@@ -79,7 +79,7 @@ Login
 
 <input id="category" placeholder="Category (blox/anime/sim)">
 
-<input id="thumb" placeholder="Thumbnail URL">
+<input id="thumb" placeholder="Paste YouTube URL or Image Thumbnail URL">
 
 <textarea id="script" placeholder="Script Code"></textarea>
 
@@ -169,9 +169,33 @@ list.innerHTML+=`
 
 }
 
-/* ADD */
+/* สร้าง script */
 
 function addScript(){
+
+let thumbInput=document.getElementById("thumb").value;
+
+/* แปลง YouTube URL → Thumbnail */
+
+if(thumbInput.includes("youtube.com") || thumbInput.includes("youtu.be")){
+
+let videoId="";
+
+if(thumbInput.includes("watch?v=")){
+videoId=thumbInput.split("watch?v=")[1].split("&")[0];
+}
+
+if(thumbInput.includes("youtu.be/")){
+videoId=thumbInput.split("youtu.be/")[1].split("?")[0];
+}
+
+if(videoId){
+thumbInput="https://img.youtube.com/vi/"+videoId+"/maxresdefault.jpg";
+}
+
+}
+  
+/* สร้าง script */
 
 let newScript={
 
@@ -181,9 +205,11 @@ title:document.getElementById("title").value,
 
 category:document.getElementById("category").value,
 
-thumb:document.getElementById("thumb").value,
+thumb:thumbInput,
 
-script:document.getElementById("script").value
+script:document.getElementById("script").value,
+
+trending:false
 
 };
 
