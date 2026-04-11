@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Admin Panel</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#fff6e5;
+padding:30px;
+}
+
+.login{
+max-width:400px;
+margin:auto;
+text-align:center;
+}
+
+.panel{
+display:none;
+}
+
+input, textarea{
+width:100%;
+padding:10px;
+margin:6px 0;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+padding:10px 16px;
+background:#f4b942;
+border:none;
+border-radius:6px;
+cursor:pointer;
+margin-top:6px;
+}
+
+.card{
+background:white;
+padding:15px;
+margin-top:10px;
+border-radius:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<div class="login" id="loginBox">
+
+<h2>Admin Login</h2>
+
+<input id="password" type="password" placeholder="Enter Password">
+
+<button onclick="login()">
+Login
+</button>
+
+</div>
+
+<!-- PANEL -->
+
+<div class="panel" id="panelBox">
+
+<h2>Script Manager</h2>
+
+<input id="title" placeholder="Title">
+
+<input id="category" placeholder="Category (blox/anime/sim)">
+
+<input id="thumb" placeholder="Thumbnail URL">
+
+<textarea id="script" placeholder="Script Code"></textarea>
+
+<button onclick="addScript()">
+➕ Add Script
+</button>
+
+<hr>
+
+<h3>All Scripts</h3>
+
+<div id="list"></div>
+
+</div>
+
+<script>
+
+/* PASSWORD */
+
+const ADMIN_PASSWORD="551901"; // เปลี่ยนรหัสได้
+
+function login(){
+
+let pass=document.getElementById("password").value;
+
+if(pass===ADMIN_PASSWORD){
+
+document.getElementById("loginBox").style.display="none";
+
+document.getElementById("panelBox").style.display="block";
+
+loadScripts();
+
+}else{
+
+alert("Wrong Password");
+
+}
+
+}
+
+/* LOAD DATA */
+
+let data={};
+
+function loadScripts(){
+
+fetch("database.json")
+.then(res=>res.json())
+.then(json=>{
+
+data=json;
+
+render();
+
+});
+
+}
+
+/* RENDER */
+
+function render(){
+
+let list=document.getElementById("list");
+
+list.innerHTML="";
+
+data.scripts.forEach((s,i)=>{
+
+list.innerHTML+=`
+
+<div class="card">
+
+<b>${s.title}</b>
+
+<br>
+
+<button onclick="deleteScript(${i})">
+❌ Delete
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+/* ADD */
+
+function addScript(){
+
+let newScript={
+
+id:Date.now(),
+
+title:document.getElementById("title").value,
+
+category:document.getElementById("category").value,
+
+thumb:document.getElementById("thumb").value,
+
+script:document.getElementById("script").value
+
+};
+
+data.scripts.push(newScript);
+
+download();
+
+render();
+
+}
+
+/* DELETE */
+
+function deleteScript(index){
+
+data.scripts.splice(index,1);
+
+download();
+
+render();
+
+}
+
+/* SAVE */
+
+function download(){
+
+let blob=new Blob(
+[JSON.stringify(data,null,2)],
+{type:"application/json"}
+);
+
+let a=document.createElement("a");
+
+a.href=URL.createObjectURL(blob);
+
+a.download="database.json";
+
+a.click();
+
+}
+
+</script>
+
+</body>
+</html>
