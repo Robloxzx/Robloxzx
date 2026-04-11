@@ -390,7 +390,6 @@ trending.innerHTML+=`
 
 let perPage=8
 let currentPage=1
-let filtered=[...scripts]
 
 function render(){
 
@@ -479,7 +478,7 @@ render()
 
 })
 
-filtered=scripts.filter(s=>s.category==cat)
+function filterCategory(cat){
 
 if(cat=="all"){
 
@@ -494,6 +493,7 @@ s=>s.category==cat
 }
 
 currentPage=1
+render()
 
 }
 
