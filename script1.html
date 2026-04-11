@@ -396,111 +396,34 @@ if(
   window.location.href = "index.html";
 }
 
+let scripts=[];
 
+fetch("database.json")
+.then(res=>res.json())
+.then(data=>{
 
-const scripts=[
-  
-`loadstring(game:HttpGet("https://zenithhub.cloud/panel/script"))()`,
-`repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
-loadstring(game:HttpGet("https://leaf-zeta.onrender.com/api/script"))()`,
-`loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()`,
-`loadstring(game:HttpGet("https://raw.githubusercontent.com/ekuve/ekuvehub/main/main.lua"))()`,
-`loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()`,
-`loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()`,
-`loadstring(game:HttpGet("https://raw.githubusercontent.com/dragonhubdev/dragonwitheveryone/refs/heads/main/Main-BF.lua"))()`,
-`loadstring(game:HttpGet("https://raw.githubusercontent.com/Anniecreate86/BloxFruits/refs/heads/main/BetaHub-BF"))()`,
+scripts=data.scripts;
 
-`Leaf HUB👇
- 
-repeat task.wait() until game:IsLoaded() and game.Players.LocalPlayer
-loadstring(game:HttpGet("https://github.com/LeafHubAcademy/LeafHub/raw/refs/heads/main/Leaf.lua"))()
- 
-OMG HUB👇
- 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))()`,
-`loadstring(game:HttpGet("https://raw.githubusercontent.com/Jadelly/bloxfruit/refs/heads/main/HighLoader", true))()`,
-`repeat task.wait() until game:IsLoaded() and game:GetService("Players") and game.Players.LocalPlayer and game.Players.LocalPlayer:FindFirstChild("PlayerGui")
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TEDDYHUB-FREEMIUM"))()`,
-`loadstring(game:HttpGet("https://raw.githubusercontent.com/meobeo8/a/a/a"))()`,
-`Config = {
-Team = "Pirates",
-Configuration = {
-HopWhenIdle = true,
-AutoHop = true,
-AutoHopDelay = 60 * 60,
-FpsBoost = false,
-BlackScreen = true
-},
-Items = {
--- Melees
-AutoFullyMelees = true,
--- Swords
-Saber = true,
-CursedDualKatana = true,
--- Guns
-SoulGuitar = false,
--- Upgrades
-RaceV2 = true
-},
-Settings = {
-StayInSea2UntilHaveDarkFragments = false
-}
-}
-loadstring(game:HttpGet("https://raw.githubusercontent.com/hhl29042008-ops/script/refs/heads/main/cac"))()`,
-`local Settings = {
-JoinTeam = "Pirates"; -- Pirates/Marines
-Translator = true; -- true/false
-}
-loadstring(game:HttpGet("https://raw.githubusercontent.com/PlockScripts/newredz/refs/heads/main/Remake-version.luau"))(Settings)`,
-`loadstring(game:HttpGet("https://raw.githubusercontent.com/longhihilonghihi-hub/MaruHubV1/refs/heads/main/MainV1.Lua "))()`,
-`repeat task.wait() until game:IsLoaded() and game:GetService("Players") and game.Players.LocalPlayer and game.Players.LocalPlayer:FindFirstChild("PlayerGui")
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TEDDYHUB-FREEMIUM"))()
-`,
+let id=parseInt(params.get("key")) || 1;
 
-`loadstring(game:HttpGet("https://raw.githubusercontent.com/HieuDepTrai-Z/Dev_Orange/refs/heads/main/OrangeHub.lua"))()`,
-`getgenv().SCRIPT_KEY = "KEYLESS" loadstring(game:HttpGet("https://raw.githubusercontent.com/DEKTHAT0XX/all_hub/refs/heads/main/DEKTAI.lua"))()`
+let scriptData=scripts.find(s=>s.id==id);
 
-  
-]
+if(!scriptData){
 
-const titles=[
-  
-"🔥fish Auto farm",
-"🔥Blox Fruits Auto Farm",
-"🔥Escape T Sunami1",
-"🔥Escape T Sunami2",
-"🔥Escape T Sunami3",
-"🔥Break A Lucky Block",
-"🔥Blox Fruits Auto Farm",
-"🔥Blox Fruits Auto Farm",
-  
-"🔥Blox Fruits Auto Farm",
-"🔥Blox Fruits Auto Farm",
-"🔥Blox Fruits Auto Farm",
-"🔥garden Horizons",
-"🔥Blox Fruits Auto Farm",
-"🔥Blox Fruits Auto Farm",
-"🔥Blox Fruits Auto Farm",
-"🔥Blox Fruits Auto Farm",
-  
-"🔥Blox Fruits Auto Farm",
-"🔥Blox Fruits Auto Farm"
+scriptData=scripts[0];
 
-]
-
-
-let id = parseInt(params.get("key")) || 1;
-
-if (id < 1 || id > scripts.length) {
-  id = 1
 }
 
-document.getElementById("script").value=scripts[id-1]
+document.getElementById("script").value=
+scriptData.script;
 
-document.getElementById("title").innerText=titles[id-1]
+document.getElementById("title").innerText=
+scriptData.title;
+
+});
 
 
-
+  
 function copyScript(){
 
 navigator.clipboard.writeText(
