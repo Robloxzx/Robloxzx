@@ -1,47 +1,20 @@
 {
-  trending: [
+  "trending": [
     {
-      id: 1,
-      title: "🔥 Escape T Sunami1",
-      thumb: "https://img.youtube.com/vi/8nZ66uuYJEA/maxresdefault.jpg",
-      script: "loadstring(game:HttpGet(\"URL\"))()"
-    },
-    {
-      id: 2,
-      title: "🔥 Blox Fruits Auto Farm",
-      thumb: "https://img.youtube.com/vi/8nZ66uuYJEA/maxresdefault.jpg",
-      script: "loadstring(game:HttpGet(\"URL\"))()"
-    },
-    {
-      id: 3,
-      title: "🔥 fish Auto farm",
-      thumb: "https://img.youtube.com/vi/8nZ66uuYJEA/maxresdefault.jpg",
-      script: "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua\", true))()"
+      "id": 1,
+      "title": "🔥 Escape T Sunami1",
+      "thumb": "https://img.youtube.com/vi/8nZ66uuYJEA/maxresdefault.jpg",
+      "script": "loadstring(game:HttpGet(\"URL\"))()"
     }
   ],
 
-  scripts: [
+  "scripts": [
     {
-      id: 1,
-      title: "🔥 fish Auto farm",
-      category: "blox",
-      thumb: "https://img.youtube.com/vi/lUeRb1mXMOo/maxresdefault.jpg",
-      script: "loadstring(game:HttpGet(\"URL\"))()"
-    },
-    {
-      id: 2,
-      title: "🔥 Blox Fruits Auto Farm",
-      category: "blox",
-      thumb: "https://img.youtube.com/vi/ueHLbrNRBlI/maxresdefault.jpg",
-      script: "loadstring(game:HttpGet(\"URL2\"))()"
-    },
-    {
-      id: 1775931726982,
-      title: "🔥 Test Script",
-      category: "blox",
-      thumb: "https://img.youtube.com/vi/sW3hEop_Yyk/maxresdefault.jpg",
-      script: "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua\", true))()",
-      trending: false
+      "id": 1,
+      "title": "🔥 fish Auto farm",
+      "category": "blox",
+      "thumb": "https://img.youtube.com/vi/lUeRb1mXMOo/maxresdefault.jpg",
+      "script": "loadstring(game:HttpGet(\"URL\"))()"
     }
   ]
-};
+}
