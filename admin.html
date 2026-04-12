@@ -92,7 +92,17 @@ Login
 
 <input id="title" placeholder="Title">
 
-<input id="category" placeholder="Category (blox/anime/sim)">
+<select id="category">
+
+<option value="">-- Select Category --</option>
+
+<option value="blox">blox</option>
+
+<option value="anime">anime</option>
+
+<option value="sim">sim</option>
+
+</select>
 
 <input id="thumb" placeholder="Paste YouTube URL or Image Thumbnail URL">
 
@@ -253,15 +263,15 @@ return `
 
 <div class="card">
 
-<img src="${s.thumb}" width="120" style="border-radius:8px"><br>
+<img src="${s.thumb || 'https://via.placeholder.com/120'}" width="120" style="border-radius:8px"><br>
 
-<b>${s.title.substring(0,80)}</b>
+<b>${(s.title || "").substring(0,80)}</b>
 <br>
 
 <small>Category: ${s.category}</small>
 <pre style="max-height:80px;overflow:auto;background:#f5f5f5;padding:6px;border-radius:6px;">
 ${escapeHTML(
-s.script.substring(0,200)
+(s.script || "").substring(0,200)
 )}
 </pre>
 
@@ -313,7 +323,7 @@ list.innerHTML="";
 
 [...data.scripts]
 .filter(s =>
-s.title.toLowerCase().includes(keyword)
+(s.title || "").toLowerCase().includes(keyword)
 )
 .sort((a,b)=>b.id-a.id)
 .forEach((s)=>{
@@ -486,10 +496,10 @@ return;
 
 let s=data.scripts[index];
 
-document.getElementById("title").value=s.title;
-document.getElementById("category").value=s.category;
-document.getElementById("thumb").value=s.thumb;
-document.getElementById("script").value=s.script;
+document.getElementById("title").value = s.title || "";
+document.getElementById("category").value = s.category || "blox";
+document.getElementById("thumb").value = s.thumb || "";
+document.getElementById("script").value = s.script || "";
 
 data.scripts.splice(index,1);
 
@@ -695,13 +705,15 @@ alert("Invalid database file");
 return;
 }
 
+if(!importedData.trending){
+importedData.trending=[];
+}
+
 /* แทนที่ข้อมูล */
 
 data = importedData;
 
 /* บันทึกไฟล์ใหม่ */
-
-download();
 
 /* แสดงใหม่ */
 
