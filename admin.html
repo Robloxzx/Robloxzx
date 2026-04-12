@@ -148,9 +148,11 @@ function loadScripts(){
 console.log("loadScripts called");
 console.log("DATA =", data);
 
-if(typeof data==="undefined"){
+/* ถ้า database.js ไม่โหลด */
 
-alert("database.js not loaded");
+if(typeof data === "undefined" || !data){
+
+console.log("database.js NOT loaded");
 
 data={
 scripts:[],
@@ -159,7 +161,7 @@ trending:[]
 
 }
 
-/* กัน scripts หรือ trending หาย */
+/* กัน scripts หาย */
 
 if(!data.scripts){
 data.scripts=[];
