@@ -231,7 +231,7 @@ return `
 <small>Category: ${s.category}</small>
 <pre style="max-height:80px;overflow:auto;background:#f5f5f5;padding:6px;border-radius:6px;">
 ${escapeHTML(
-decodeBase64(s.script).substring(0,200)
+s.script.substring(0,200)
 )}
 </pre>
 
@@ -400,7 +400,7 @@ return;
 
 }
   
-let scriptText = encodeBase64(rawText);
+let scriptText = rawText;
 
 
 /* CREATE */
@@ -445,7 +445,7 @@ document.getElementById("title").value=s.title;
 document.getElementById("category").value=s.category;
 document.getElementById("thumb").value=s.thumb;
 document.getElementById("script").value=
-decodeBase64(s.script);
+s.script
 
 /* remove old */
 
@@ -520,7 +520,7 @@ return;
 }
 
 let raw =
-decodeBase64(s.script);
+s.script;
 
 /* แปลงให้ปลอดภัยสำหรับ iframe */
 
