@@ -296,9 +296,21 @@ list.innerHTML+=createCard(s,i);
 
 function encodeBase64(text){
 
+try{
+
 return btoa(
-String.fromCharCode(...new TextEncoder().encode(text))
+unescape(
+encodeURIComponent(text)
+)
 );
+
+}catch(e){
+
+console.warn("Encode error:", e);
+
+return "";
+
+}
 
 }
 
@@ -307,7 +319,9 @@ function escapeHTML(text){
 return text
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
-.replace(/>/g,"&gt;");
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#39;");
 
 }
 
@@ -317,19 +331,17 @@ if(!text) return "";
 
 try{
 
-let binary = atob(text);
-
-let bytes = new Uint8Array(
-[...binary].map(c => c.charCodeAt(0))
+return decodeURIComponent(
+escape(
+atob(text)
+)
 );
-
-return new TextDecoder().decode(bytes);
 
 }catch(e){
 
 console.warn("Decode error:", e);
 
-return text; // กันข้อมูลเก่าพัง
+return text;
 
 }
 
