@@ -343,7 +343,8 @@ fetch("database.json")
 
 scripts=data.scripts.reverse()
 
-trendingData=data.trending || []
+/* เอาเฉพาะตัวที่ trending=true */
+trendingData = scripts.filter(s => s.trending === true)
 
 filtered=[...scripts]
 
