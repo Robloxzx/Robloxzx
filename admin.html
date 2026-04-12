@@ -68,38 +68,9 @@ border-radius:10px;
 <input 
 id="password" 
 type="password" 
-placeholder="Enter Password"
-style="padding-right:40px;">
+placeholder="Enter Password">
 
-<!-- ปุ่มลูกตา -->
-<button 
-type="button"
-onclick="togglePassword()"
-style="
-position:absolute;
-right:8px;
-top:50%;
-transform:translateY(-50%);
-background:none;
-border:none;
-cursor:pointer;
-padding:0;
-">
 
-<!-- SVG ลูกตา -->
-<svg xmlns="http://www.w3.org/2000/svg" 
-width="20" height="20" 
-viewBox="0 0 24 24" 
-fill="none" 
-stroke="black" 
-stroke-width="2">
-
-<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/>
-<circle cx="12" cy="12" r="3"/>
-
-</svg>
-
-</button>
 
 </div>
 
@@ -644,23 +615,7 @@ a.click();
 
 }
 
-function togglePassword(){
 
-let input =
-document.getElementById("password");
-
-if(input.type === "password"){
-
-input.type = "text";
-
-}else{
-
-input.type = "password";
-
-}
-
-}
-  
 </script>
 
 </body>
