@@ -63,10 +63,28 @@ border-radius:10px;
 
 <form onsubmit="login(); return false;">
 
+<div style="position:relative;">
+
 <input 
 id="password" 
 type="password" 
-placeholder="Enter Password">
+placeholder="Enter Password"
+style="padding-right:40px;width:100%;">
+
+<span 
+onclick="togglePassword()"
+style="
+position:absolute;
+right:10px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+font-size:18px;
+">
+👁
+</span>
+
+</div>
 
 <button type="submit">
 Login
@@ -607,6 +625,23 @@ a.click();
 
 }
 
+function togglePassword(){
+
+let input =
+document.getElementById("password");
+
+if(input.type === "password"){
+
+input.type = "text";
+
+}else{
+
+input.type = "password";
+
+}
+
+}
+  
 </script>
 
 </body>
