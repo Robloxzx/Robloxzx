@@ -397,8 +397,13 @@ let thumbInput=document.getElementById("thumb").value;
 let title=document.getElementById("title").value.trim();
 let category=document.getElementById("category").value.trim();
 
-if(title==="" || category===""){
-alert("Title and Category required");
+if(title===""){
+alert("กรุณาใส่ Title");
+return;
+}
+
+if(category===""){
+alert("กรุณาเลือก Category");
 return;
 }
 
