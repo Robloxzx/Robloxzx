@@ -102,6 +102,23 @@ Login
 ➕ Add Script
 </button>
 
+<!-- ✅ เพิ่มตรงนี้ -->
+
+<input 
+type="file" 
+id="importFile"
+accept=".json"
+style="display:none"
+onchange="importDatabase(event)">
+
+<button onclick="document.getElementById('importFile').click()">
+📂 Import Database
+</button>
+
+<button onclick="download()">
+💾 Export Database
+</button>
+  
 <hr>
 
 <h3>All Scripts</h3>
@@ -135,6 +152,8 @@ dbLoaded = true;
 .catch(err => {
 
 console.error("โหลด database.json ไม่สำเร็จ", err);
+
+dbLoaded = true; // ✅ เพิ่มบรรทัดนี้
 
 });
 </script>
@@ -215,9 +234,12 @@ let list=document.getElementById("list");
 
 list.innerHTML="";
 
-data.scripts.forEach((s,i)=>{
+/* ใช้ copy ก่อน sort */
 
-list.innerHTML+=createCard(s,i);
+[...data.scripts]
+.sort((a,b)=>b.id-a.id)
+.forEach((s)=>{
+list.innerHTML+=createCard(s);
 
 });
 
@@ -225,7 +247,7 @@ list.innerHTML+=createCard(s,i);
 
 /* CREATE CARD */
 
-function createCard(s,i){
+function createCard(s){
 
 return `
 
@@ -249,19 +271,19 @@ ${s.trending
 
 <br>
 
-<button onclick="editScript(${i})">
+<button onclick="editScript(${s.id})">
 ✏️ Edit
 </button>
 
-<button onclick="deleteScript(${i})">
+<button onclick="deleteScript(${s.id})">
 ❌ Delete
 </button>
 
-<button onclick="toggleTrending(${i})">
+<button onclick="toggleTrending(${s.id})">
 ${s.trending ? "⭐ Remove Trending" : "⭐ Set Trending"}
 </button>
 
-<button onclick="previewScript(${i})">
+<button onclick="previewScript(${s.id})">
 👁 Preview
 </button>
 
@@ -289,13 +311,14 @@ let list=document.getElementById("list");
 
 list.innerHTML="";
 
-data.scripts
+[...data.scripts]
 .filter(s =>
 s.title.toLowerCase().includes(keyword)
 )
-.forEach((s,i)=>{
+.sort((a,b)=>b.id-a.id)
+.forEach((s)=>{
 
-list.innerHTML+=createCard(s,i);
+list.innerHTML+=createCard(s);
 
 });
 
@@ -407,6 +430,12 @@ alert("Script cannot be empty");
 return;
 
 }
+
+/* ✅ confirm ต้องอยู่ตรงนี้ */
+
+if(!confirm("Add this script?")){
+return;
+}
   
 let scriptText = rawText;
 
@@ -430,9 +459,9 @@ trending:false
 
 data.scripts.push(newScript);
 
-download();
-
 render();
+
+alert("Script added successfully!");
 
 /* CLEAR FORM */
 
@@ -445,43 +474,60 @@ document.getElementById("script").value="";
 
 /* EDIT */
 
-function editScript(index){
+function editScript(id){
+
+let index =
+data.scripts.findIndex(s=>s.id===id);
+
+if(index===-1){
+alert("Script not found");
+return;
+}
 
 let s=data.scripts[index];
 
 document.getElementById("title").value=s.title;
 document.getElementById("category").value=s.category;
 document.getElementById("thumb").value=s.thumb;
-document.getElementById("script").value=
-s.script;
-
-/* remove old */
+document.getElementById("script").value=s.script;
 
 data.scripts.splice(index,1);
-
-download();
 
 render();
 
 }
-
 /* DELETE */
 
-function deleteScript(index){
+function deleteScript(id){
 
-if(!confirm("Delete this script?")) return;
+if(!confirm("Delete this script permanently?")){
+return;
+}
+
+let index =
+data.scripts.findIndex(s=>s.id===id);
+
+if(index===-1){
+alert("Script not found");
+return;
+}
 
 data.scripts.splice(index,1);
-
-download();
 
 render();
 
 }
-
 /* TRENDING */
 
-function toggleTrending(index){
+function toggleTrending(id){
+
+let index =
+data.scripts.findIndex(s=>s.id===id);
+
+if(index===-1){
+alert("Script not found");
+return;
+}
 
 let script=data.scripts[index];
 
@@ -505,17 +551,23 @@ return;
 
 script.trending=!script.trending;
 
-download();
-
 render();
 
 }
 
-/* PREVIEW SCRIPT (SAFE) */
 
 /* PREVIEW SCRIPT (SAFE + STABLE) */
 
-function previewScript(index){
+function previewScript(id){
+
+let index =
+data.scripts.findIndex(s=>s.id===id);
+
+if(index===-1){
+alert("Script not found");
+return;
+}
+
 
 let s = data.scripts[index];
 
@@ -609,12 +661,69 @@ let a=document.createElement("a");
 
 a.href=URL.createObjectURL(blob);
 
-a.download="database.json";
+a.download="database_backup_"+Date.now()+".json";
 
 a.click();
 
 }
 
+function importDatabase(event){
+
+let file = event.target.files[0];
+
+if(!file){
+return;
+}
+
+if(!confirm("Import database? Current data will be replaced.")){
+return;
+}
+
+let reader = new FileReader();
+
+reader.onload = function(e){
+
+try{
+
+let importedData =
+JSON.parse(e.target.result);
+
+/* ตรวจว่าเป็น database จริง */
+
+if(!importedData.scripts || !Array.isArray(importedData.scripts)){
+alert("Invalid database file");
+return;
+}
+
+/* แทนที่ข้อมูล */
+
+data = importedData;
+
+/* บันทึกไฟล์ใหม่ */
+
+download();
+
+/* แสดงใหม่ */
+
+render();
+
+alert("Import successful!");
+
+}catch(err){
+
+alert("Import failed! File may be broken.");
+
+}
+
+};
+
+reader.readAsText(file);
+
+/* reset input */
+
+event.target.value="";
+
+}
 
 </script>
 
