@@ -106,12 +106,15 @@ oninput="searchScript()">
 <div id="list"></div>
 
 </div>
+
+<script>
+window.data = window.data || { scripts: [], trending: [] };
+</script>
+
   
 <script src="database.js"></script>
   
 <script>
-
-var data;
   
 /* PASSWORD */
 
@@ -134,7 +137,7 @@ document.getElementById("loginBox").style.display="none";
 
 document.getElementById("panelBox").style.display="block";
 
-loadScripts();
+setTimeout(loadScripts, 100);
 
 }else{
 
@@ -151,24 +154,18 @@ function loadScripts(){
 
 console.log("loadScripts called");
 
-/* เช็คว่ามี data หรือยัง */
+/* ถ้า database.js ไม่โหลด */
 
 if(typeof data === "undefined"){
 
-console.log("data not ready yet");
-
-data={
-scripts:[],
-trending:[]
-};
-
-}else{
-
-console.log("DATA =", data);
+alert("database.js โหลดไม่สำเร็จ");
+return;
 
 }
 
-/* กัน scripts หาย */
+console.log("DATA =", data);
+
+/* กัน scripts/trending หาย */
 
 if(!data.scripts){
 data.scripts=[];
@@ -424,16 +421,17 @@ render();
 
 function download(){
 
-/* แปลงข้อมูลให้รองรับ script ทุกแบบ */
+/* บันทึกข้อมูลแบบตรง */
 
-let safeData = JSON.stringify(data,null,2)
-.replace(/\\/g,"\\\\")
-.replace(/`/g,"\\`");
+let jsText =
+"var data = " +
+JSON.stringify(data,null,2) +
+";";
 
 /* export เป็น JS */
 
 let blob=new Blob(
-["var data = "+safeData],
+[jsText],
 {type:"application/javascript"}
 );
 
