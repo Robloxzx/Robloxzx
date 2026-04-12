@@ -49,6 +49,29 @@ margin-top:10px;
 border-radius:10px;
 }
 
+animation:fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(6px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+#categoryFilter button.active{
+background:#333;
+color:white;
+}
+
+button:hover{
+opacity:0.85;
+}
+
 </style>
 
 </head>
@@ -58,6 +81,10 @@ border-radius:10px;
 <!-- LOGIN -->
 
 <div class="login" id="loginBox">
+  
+<div id="loadingText" style="display:none;margin-top:10px;color:#555;">
+⏳ Loading database...
+</div>
 
 <h2>Admin Login</h2>
 
@@ -150,6 +177,28 @@ id="searchInput"
 placeholder="🔎 Search Script"
 oninput="searchScript()">
 
+<br>
+
+<div id="categoryFilter">
+
+<button onclick="setFilter('all')">
+All
+</button>
+
+<button onclick="setFilter('blox')">
+blox
+</button>
+
+<button onclick="setFilter('anime')">
+anime
+</button>
+
+<button onclick="setFilter('sim')">
+sim
+</button>
+
+</div>
+
 <div id="list"></div>
 
 
@@ -158,6 +207,7 @@ oninput="searchScript()">
 <script>
 
 let data = { scripts: [], trending: [] };
+let currentFilter = "all";
 let dbLoaded = false;
 
 fetch("database.json")
@@ -199,7 +249,8 @@ if(pass===ADMIN_PASSWORD){
 
 if(!dbLoaded){
 
-alert("Database ยังโหลดไม่เสร็จ กรุณารอสักครู่");
+document.getElementById("loadingText").style.display="block";
+
 return;
 
 }
@@ -264,9 +315,25 @@ document.getElementById("scriptCount").innerText =
 /* ใช้ copy ก่อน sort */
 
 [...data.scripts]
+
+/* Filter Category */
+
+.filter(s => {
+
+if(currentFilter === "all"){
+return true;
+}
+
+return s.category === currentFilter;
+
+})
+
 .sort((a,b)=>b.id-a.id)
+
 .forEach((s)=>{
+
 list.innerHTML+=createCard(s);
+
 });
 
 }
@@ -322,28 +389,51 @@ ${s.trending ? "⭐ Remove Trending" : "⭐ Set Trending"}
 
 function searchScript(){
 
-let keyword=document
+let keyword =
+document
 .getElementById("searchInput")
 .value
 .toLowerCase();
 
-if(keyword===""){
-render();
-return;
-}
-
-let list=document.getElementById("list");
+let list =
+document.getElementById("list");
 
 list.innerHTML="";
 
-[...data.scripts]
-.filter(s =>
-(s.title || "").toLowerCase().includes(keyword)
-)
-.sort((a,b)=>b.id-a.id)
-.forEach((s)=>{
+let filtered = [...data.scripts]
 
-list.innerHTML+=createCard(s);
+.filter(s => {
+
+/* Filter Category */
+
+if(currentFilter !== "all"){
+
+if(s.category !== currentFilter){
+return false;
+}
+
+}
+
+/* Filter Search */
+
+return (s.title || "")
+.toLowerCase()
+.includes(keyword);
+
+})
+
+.sort((a,b)=>b.id-a.id);
+
+
+/* ✅ อัปเดตจำนวน */
+
+document.getElementById("scriptCount").innerText =
+"All Scripts (" + filtered.length + ")";
+
+
+filtered.forEach((s)=>{
+
+list.innerHTML += createCard(s);
 
 });
 
@@ -491,8 +581,7 @@ data.scripts.push(newScript);
 
 render();
 
-alert("Script added successfully!");
-
+alert("Script added successfully!");showToast("Script added successfully!");
 /* CLEAR FORM */
 
 document.getElementById("title").value="";
@@ -500,6 +589,10 @@ document.getElementById("category").value="";
 document.getElementById("thumb").value="";
 document.getElementById("script").value="";
 
+/* ✅ เคลียร์รูป preview */
+
+document.getElementById("thumbPreview").style.display="none";
+document.getElementById("thumbPreview").src="";
 }
 
 /* EDIT */
@@ -520,6 +613,9 @@ document.getElementById("title").value = s.title || "";
 document.getElementById("category").value = s.category || "blox";
 document.getElementById("thumb").value = s.thumb || "";
 document.getElementById("script").value = s.script || "";
+/* ✅ แสดงรูปตอน edit */
+
+previewThumb();
 
 data.scripts.splice(index,1);
 
@@ -814,7 +910,63 @@ preview.style.display="block";
 
 }
 
+function setFilter(category){
+
+currentFilter = category;
+
+/* highlight button */
+
+document
+.querySelectorAll("#categoryFilter button")
+.forEach(btn=>btn.classList.remove("active"));
+
+document
+.querySelector(
+`#categoryFilter button[onclick="setFilter('${category}')"]`
+)
+.classList.add("active");
+
+/* reset search */
+
+document.getElementById("searchInput").value = "";
+
+render();
+
+}
+
+function showToast(text){
+
+let toast =
+document.getElementById("toast");
+
+toast.innerText = text;
+
+toast.style.display = "block";
+
+setTimeout(()=>{
+
+toast.style.display="none";
+
+},2000);
+
+}
+  
 </script>
 
+<div id="toast"
+style="
+position:fixed;
+bottom:20px;
+right:20px;
+background:#333;
+color:white;
+padding:10px 16px;
+border-radius:8px;
+display:none;
+z-index:999;
+">
+Saved
+</div>
+  
 </body>
 </html>
