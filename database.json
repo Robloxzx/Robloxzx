@@ -7,14 +7,14 @@
       "script": "loadstring(game:HttpGet(\"URL\"))()"
     }
   ],
-
   "scripts": [
     {
-      "id": 1,
-      "title": "🔥 fish Auto farm",
+      "id": 1775962187877,
+      "title": "🔥 Blox fruits",
       "category": "blox",
-      "thumb": "https://img.youtube.com/vi/lUeRb1mXMOo/maxresdefault.jpg",
-      "script": "loadstring(game:HttpGet(\"URL\"))()"
+      "thumb": "https://img.youtube.com/vi/8nZ66uuYJEA/maxresdefault.jpg",
+      "script": "bG9hZHN0cmluZyhnYW1lOkh0dHBHZXQoImh0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9BaG1hZFY5OS9TcGVlZC1IdWItWC9tYWluL1NwZWVkJTIwSHViJTIwWC5sdWEiLCB0cnVlKSkoKQ==",
+      "trending": false
     }
   ]
 }
