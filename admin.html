@@ -42,16 +42,6 @@ cursor:pointer;
 margin-top:6px;
 }
 
-.card{
-background:white;
-padding:15px;
-margin-top:10px;
-border-radius:10px;
-}
-
-animation:fadeIn 0.25s ease;
-}
-
 @keyframes fadeIn{
 from{
 opacity:0;
@@ -75,7 +65,7 @@ opacity:0.85;
 /* ===== Layout ซ้าย-ขวา ===== */
 
 .panel{
-display:flex;
+display:none;
 gap:20px;
 align-items:flex-start;
 }
@@ -110,6 +100,12 @@ width:100px;
 height:70px;
 object-fit:cover;
 border-radius:8px;
+}
+
+.card:hover{
+transform:translateY(-2px);
+box-shadow:0 6px 16px rgba(0,0,0,0.08);
+transition:0.15s;
 }
 
 </style>
@@ -301,7 +297,7 @@ console.log("Login button pressed");
   
 document.getElementById("loginBox").style.display="none";
 
-document.getElementById("panelBox").style.display="block";
+document.getElementById("panelBox").style.display="flex";
 
 loadScripts();
 
@@ -378,7 +374,29 @@ list.innerHTML+=createCard(s);
 
 });
 
+/* ⭐ เพิ่มตรงนี้ */
+
+if(list.innerHTML===""){
+
+list.innerHTML=`
+
+<div style="
+text-align:center;
+padding:40px;
+color:#777;
+">
+
+📂 ยังไม่มี Script<br>
+<small>เพิ่ม Script แรกของคุณได้ทางซ้าย</small>
+
+</div>
+
+`;
+
 }
+
+}
+
 /* CREATE CARD */
 
 function createCard(s){
@@ -494,8 +512,25 @@ list.innerHTML += createCard(s);
 
 });
 
-}
+if(list.innerHTML===""){
 
+list.innerHTML=`
+
+<div style="
+text-align:center;
+padding:40px;
+color:#777;
+">
+
+🔎 ไม่พบ Script ที่ค้นหา
+
+</div>
+
+`;
+
+}
+  
+}
 
 function encodeBase64(text){
 
