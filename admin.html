@@ -105,15 +105,32 @@ oninput="searchScript()">
 
 <div id="list"></div>
 
+
 </div>
 
 <script>
-window.data = window.data || { scripts: [], trending: [] };
+
+let data = { scripts: [], trending: [] };
+let dbLoaded = false;
+
+fetch("database.json")
+.then(res => res.json())
+.then(db => {
+
+data = db;
+
+console.log("Database loaded:", data);
+
+dbLoaded = true;
+
+})
+.catch(err => {
+
+console.error("โหลด database.json ไม่สำเร็จ", err);
+
+});
 </script>
 
-  
-<script src="database.js"></script>
-  
 <script>
   
 /* PASSWORD */
@@ -131,13 +148,20 @@ let pass=document
 
 if(pass===ADMIN_PASSWORD){
 
+if(!dbLoaded){
+
+alert("Database ยังโหลดไม่เสร็จ กรุณารอสักครู่");
+return;
+
+}
+
 console.log("Login button pressed");
   
 document.getElementById("loginBox").style.display="none";
 
 document.getElementById("panelBox").style.display="block";
 
-setTimeout(loadScripts, 100);
+loadScripts();
 
 }else{
 
@@ -156,12 +180,7 @@ console.log("loadScripts called");
 
 /* ถ้า database.js ไม่โหลด */
 
-if(typeof data === "undefined"){
 
-alert("database.js โหลดไม่สำเร็จ");
-return;
-
-}
 
 console.log("DATA =", data);
 
@@ -424,22 +443,20 @@ function download(){
 /* บันทึกข้อมูลแบบตรง */
 
 let jsText =
-"var data = " +
-JSON.stringify(data,null,2) +
-";";
+JSON.stringify(data,null,2);
 
 /* export เป็น JS */
 
 let blob=new Blob(
 [jsText],
-{type:"application/javascript"}
+{type:"application/json"}
 );
 
 let a=document.createElement("a");
 
 a.href=URL.createObjectURL(blob);
 
-a.download="database.js";
+a.download="database.json";
 
 a.click();
 
