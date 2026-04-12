@@ -225,10 +225,15 @@ return `
 
 <img src="${s.thumb}" width="120" style="border-radius:8px"><br>
 
-<b>${s.title}</b>
+<b>${s.title.substring(0,80)}</b>
 <br>
 
 <small>Category: ${s.category}</small>
+<pre style="max-height:80px;overflow:auto;background:#f5f5f5;padding:6px;border-radius:6px;">
+${escapeHTML(
+decodeBase64(s.script).substring(0,200)
+)}
+</pre>
 
 ${s.trending 
 ? "<div style='color:green'>⭐ Trending</div>" 
@@ -246,6 +251,10 @@ ${s.trending
 
 <button onclick="toggleTrending(${i})">
 ${s.trending ? "⭐ Remove Trending" : "⭐ Set Trending"}
+</button>
+
+<button onclick="previewScript(${i})">
+👁 Preview
 </button>
 
 </div>
@@ -281,6 +290,48 @@ s.title.toLowerCase().includes(keyword)
 list.innerHTML+=createCard(s,i);
 
 });
+
+}
+
+
+function encodeBase64(text){
+
+return btoa(
+String.fromCharCode(...new TextEncoder().encode(text))
+);
+
+}
+
+function escapeHTML(text){
+
+return text
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;");
+
+}
+
+function decodeBase64(text){
+
+if(!text) return "";
+
+try{
+
+let binary = atob(text);
+
+let bytes = new Uint8Array(
+[...binary].map(c => c.charCodeAt(0))
+);
+
+return new TextDecoder().decode(bytes);
+
+}catch(e){
+
+console.warn("Decode error:", e);
+
+return text; // กันข้อมูลเก่าพัง
+
+}
 
 }
 
@@ -324,18 +375,21 @@ thumbInput=
 
 }
 
-let scriptText=
+let rawText =
 document
 .getElementById("script")
 .value
 .trim();
 
-if(scriptText===""){
+if(rawText===""){
 
 alert("Script cannot be empty");
 return;
 
 }
+  
+let scriptText = encodeBase64(rawText);
+
 
 /* CREATE */
 
@@ -378,7 +432,8 @@ let s=data.scripts[index];
 document.getElementById("title").value=s.title;
 document.getElementById("category").value=s.category;
 document.getElementById("thumb").value=s.thumb;
-document.getElementById("script").value=s.script;
+document.getElementById("script").value=
+decodeBase64(s.script);
 
 /* remove old */
 
@@ -436,6 +491,84 @@ render();
 
 }
 
+/* PREVIEW SCRIPT (SAFE) */
+
+/* PREVIEW SCRIPT (SAFE + STABLE) */
+
+function previewScript(index){
+
+let s = data.scripts[index];
+
+if(!s.script){
+
+alert("ไม่มีข้อมูล script");
+
+return;
+
+}
+
+let raw =
+decodeBase64(s.script);
+
+/* แปลงให้ปลอดภัยสำหรับ iframe */
+
+let safeHTML =
+raw
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;");
+
+/* เปิดหน้าพรีวิว */
+
+let win = window.open("", "_blank");
+
+if(!win){
+
+alert("Popup ถูกบล็อก");
+
+return;
+
+}
+
+win.document.open();
+
+win.document.write(`
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Preview</title>
+
+<style>
+
+body{
+margin:0;
+background:#111;
+color:#0f0;
+font-family:monospace;
+padding:20px;
+white-space:pre-wrap;
+}
+
+</style>
+
+</head>
+
+<body>
+
+${safeHTML}
+
+</body>
+
+</html>
+
+`);
+
+win.document.close();
+
+}
 /* SAVE */
 
 function download(){
