@@ -104,7 +104,17 @@ Login
 
 </select>
 
-<input id="thumb" placeholder="Paste YouTube URL or Image Thumbnail URL">
+<input 
+id="thumb" 
+placeholder="Paste YouTube URL or Image Thumbnail URL"
+oninput="previewThumb()">
+
+<br>
+
+<img 
+id="thumbPreview"
+src=""
+style="width:180px;border-radius:10px;display:none;margin-top:6px;">
 
 <textarea id="script" placeholder="Script Code"></textarea>
 
@@ -131,7 +141,9 @@ onchange="importDatabase(event)">
   
 <hr>
 
-<h3>All Scripts</h3>
+<h3 id="scriptCount">
+All Scripts (0)
+</h3>
 
 <input 
 id="searchInput" 
@@ -244,17 +256,20 @@ let list=document.getElementById("list");
 
 list.innerHTML="";
 
+/* ✅ อัปเดตจำนวน Script */
+
+document.getElementById("scriptCount").innerText =
+"All Scripts (" + data.scripts.length + ")";
+
 /* ใช้ copy ก่อน sort */
 
 [...data.scripts]
 .sort((a,b)=>b.id-a.id)
 .forEach((s)=>{
 list.innerHTML+=createCard(s);
-
 });
 
 }
-
 /* CREATE CARD */
 
 function createCard(s){
@@ -739,6 +754,63 @@ reader.readAsText(file);
 /* reset input */
 
 event.target.value="";
+
+}
+
+function previewThumb(){
+
+let thumbInput =
+document.getElementById("thumb").value;
+
+let preview =
+document.getElementById("thumbPreview");
+
+if(!thumbInput){
+
+preview.style.display="none";
+return;
+
+}
+
+/* YouTube → Thumbnail */
+
+if(
+thumbInput.includes("youtube.com") ||
+thumbInput.includes("youtu.be")
+){
+
+let videoId="";
+
+if(thumbInput.includes("watch?v=")){
+videoId=
+thumbInput
+.split("watch?v=")[1]
+.split("&")[0];
+}
+
+if(thumbInput.includes("youtu.be/")){
+videoId=
+thumbInput
+.split("youtu.be/")[1]
+.split("?")[0];
+}
+
+if(videoId){
+
+thumbInput =
+"https://img.youtube.com/vi/"
++videoId+
+"/maxresdefault.jpg";
+
+}
+
+}
+
+/* แสดงรูป */
+
+preview.src = thumbInput;
+
+preview.style.display="block";
 
 }
 
