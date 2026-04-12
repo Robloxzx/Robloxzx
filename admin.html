@@ -3,7 +3,6 @@
 <head>
 
 <meta charset="UTF-8">
-<script src="database.js"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>Admin Panel</title>
@@ -107,14 +106,18 @@ oninput="searchScript()">
 <div id="list"></div>
 
 </div>
-
+  
+<script src="database.js"></script>
+  
 <script>
 
+var data;
+  
 /* PASSWORD */
 
 const ADMIN_PASSWORD="551901";
 
-var data;
+
 
 function login(){
 
@@ -141,23 +144,27 @@ alert("Wrong Password");
 
 }
 
+
 /* LOAD DATA */
 
 function loadScripts(){
 
 console.log("loadScripts called");
-console.log("DATA =", data);
 
-/* ถ้า database.js ไม่โหลด */
+/* เช็คว่ามี data หรือยัง */
 
-if(typeof data === "undefined" || !data){
+if(typeof data === "undefined"){
 
-console.log("database.js NOT loaded");
+console.log("data not ready yet");
 
 data={
 scripts:[],
 trending:[]
 };
+
+}else{
+
+console.log("DATA =", data);
 
 }
 
@@ -174,7 +181,6 @@ data.trending=[];
 render();
 
 }
-
 /* RENDER */
 
 function render(){
