@@ -106,17 +106,6 @@ background:linear-gradient(
 #f7f7f7
 );
 
-/* ⭐ เพิ่มบรรทัดนี้ */
-box-sizing:border-box;
-
-padding:22px;  /* เพิ่มนิดให้โล่งขึ้น */
-
-border-radius:16px;
-
-box-shadow:0 4px 14px rgba(0,0,0,0.06);
-
-}
-
 /* ระยะขอบ */
 padding:20px;
 
@@ -138,10 +127,7 @@ background:linear-gradient(
 #f3f3f3
 );
 
-/* ⭐ เพิ่ม */
-box-sizing:border-box;
-
-padding:26px;   /* จาก 20 → 26 */
+padding:22px;   /* จาก 20 → 26 */
 
 border-radius:18px;
 
@@ -221,15 +207,14 @@ margin:14px 0 18px;
 
 }
 
-/* ===== Center Search ===== */
+#searchInput{
 
-.searchWrapper{
+margin-top:6px;
 
-max-width:520px;
-
-margin:0 auto 14px auto;
+margin-bottom:12px;
 
 }
+
 
 </style>
 
@@ -332,15 +317,11 @@ onchange="importDatabase(event)">
 All Scripts (0)
 </h3>
 <hr class="sectionDivider">
-
-<div class="searchWrapper">
   
 <input 
 id="searchInput" 
 placeholder="🔎 Search Script"
 oninput="searchScript()">
-
-</div>
 
 <br>
 
