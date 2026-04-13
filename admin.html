@@ -106,6 +106,17 @@ background:linear-gradient(
 #f7f7f7
 );
 
+/* ⭐ เพิ่มบรรทัดนี้ */
+box-sizing:border-box;
+
+padding:22px;  /* เพิ่มนิดให้โล่งขึ้น */
+
+border-radius:16px;
+
+box-shadow:0 4px 14px rgba(0,0,0,0.06);
+
+}
+
 /* ระยะขอบ */
 padding:20px;
 
@@ -121,26 +132,25 @@ box-shadow:0 4px 14px rgba(0,0,0,0.06);
 
 flex:1;
 
-/* ⭐ พื้นหลังแบบ gradient */
 background:linear-gradient(
 145deg,
 #ffffff,
 #f3f3f3
 );
 
-/* ระยะขอบ */
-padding:20px;
+/* ⭐ เพิ่ม */
+box-sizing:border-box;
 
-/* มุมโค้ง */
+padding:26px;   /* จาก 20 → 26 */
+
 border-radius:18px;
 
-/* เงาลึกขึ้น */
 box-shadow:
 0 6px 18px rgba(0,0,0,0.06),
 inset 0 1px 0 rgba(255,255,255,0.6);
 
 }
-
+  
 /* ===== Card แบบมืออาชีพ ===== */
 
 .card{
@@ -208,6 +218,16 @@ transparent
 );
 
 margin:14px 0 18px;
+
+}
+
+/* ===== Center Search ===== */
+
+.searchWrapper{
+
+max-width:520px;
+
+margin:0 auto 14px auto;
 
 }
 
@@ -313,10 +333,14 @@ All Scripts (0)
 </h3>
 <hr class="sectionDivider">
 
+<div class="searchWrapper">
+  
 <input 
 id="searchInput" 
 placeholder="🔎 Search Script"
 oninput="searchScript()">
+
+</div>
 
 <br>
 
