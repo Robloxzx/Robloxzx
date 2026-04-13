@@ -31,7 +31,7 @@
       "category": "blox",
       "thumb": "https://img.youtube.com/vi/-lCf-dBK1cs/maxresdefault.jpg",
       "script": "repeat wait() until game:IsLoaded() and game.Players.LocalPlayer\ngetgenv().team = \"Pirates\" -- Pirates or Marines\nloadstring(game:HttpGet(\"https://raw.githubusercontent.com/vinh129150/hack/refs/heads/main/HopBoss.lua\"))()",
-      "trending": false
+      "trending": true
     },
     {
       "id": 1776080406228,
@@ -39,7 +39,7 @@
       "category": "blox",
       "thumb": "https://img.youtube.com/vi/-EPAv0hRwPc/maxresdefault.jpg",
       "script": "repeat wait() until game:IsLoaded() and game.Players.LocalPlayer\ngetgenv().team = \"Pirates\" -- Pirates or Marines\nloadstring(game:HttpGet(\"https://raw.githubusercontent.com/vinh129150/hack/refs/heads/main/HopBoss.lua\"))()",
-      "trending": false
+      "trending": true
     }
   ]
 }
