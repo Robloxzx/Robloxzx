@@ -251,6 +251,9 @@ sim
 </div>
 
 <div id="list"></div>
+  
+<div id="pagination"
+style="margin-top:15px;"></div>
 
 </div>
 
@@ -261,6 +264,9 @@ sim
 let data = { scripts: [], trending: [] };
 let currentFilter = "all";
 let dbLoaded = false;
+  
+let currentPage = 1;
+let perPage = 12;
 
 fetch("database.json")
 .then(res => res.json())
@@ -353,22 +359,13 @@ render();
 
 function render(){
 
-console.log("Rendering scripts:", data.scripts);
-
-let list=document.getElementById("list");
+let list = document.getElementById("list");
 
 list.innerHTML="";
 
-/* ✅ อัปเดตจำนวน Script */
+/* filter */
 
-document.getElementById("scriptCount").innerText =
-"All Scripts (" + data.scripts.length + ")";
-
-/* ใช้ copy ก่อน sort */
-
-[...data.scripts]
-
-/* Filter Category */
+let filtered = [...data.scripts]
 
 .filter(s => {
 
@@ -380,15 +377,36 @@ return s.category === currentFilter;
 
 })
 
-.sort((a,b)=>b.id-a.id)
+.sort((a,b)=>b.id-a.id);
 
-.forEach((s)=>{
+/* pagination */
 
-list.innerHTML+=createCard(s);
+let start = (currentPage-1) * perPage;
+let end = start + perPage;
+
+let pageData =
+filtered.slice(start,end);
+
+/* update count */
+
+document.getElementById("scriptCount").innerText =
+"All Scripts (" + filtered.length + ")";
+
+/* render page */
+
+/* render page (FAST VERSION) */
+
+let html = "";
+
+pageData.forEach((s)=>{
+
+html += createCard(s);
 
 });
 
-/* ⭐ เพิ่มตรงนี้ */
+list.innerHTML = html;
+
+/* ถ้าไม่มี */
 
 if(list.innerHTML===""){
 
@@ -400,8 +418,7 @@ padding:40px;
 color:#777;
 ">
 
-📂 ยังไม่มี Script<br>
-<small>เพิ่ม Script แรกของคุณได้ทางซ้าย</small>
+📂 ยังไม่มี Script
 
 </div>
 
@@ -409,13 +426,63 @@ color:#777;
 
 }
 
+/* render pagination */
+
+renderPagination(filtered.length);
+
 }
 
+/* ⭐ เพิ่มตรงนี้ */
+
+function renderPagination(total){
+
+let pageBox =
+document.getElementById("pagination");
+
+if(!pageBox) return;
+
+pageBox.innerHTML="";
+
+let totalPages =
+Math.ceil(total / perPage);
+
+for(let i=1;i<=totalPages;i++){
+
+let btn=document.createElement("button");
+
+btn.innerText=i;
+
+if(i===currentPage){
+btn.style.background="#333";
+btn.style.color="white";
+}
+
+btn.onclick=()=>{
+
+currentPage=i;
+
+render();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+};
+
+pageBox.appendChild(btn);
+
+}
+
+}
+  
 /* CREATE CARD */
 
 function createCard(s){
 
 return `
+
+<div class="card">
 
 <div class="thumbBox">
 
@@ -428,6 +495,8 @@ ${s.trending ? `
 ` : ""}
 
 </div>
+
+<div style="flex:1;">
 
 <b>
 ${(s.title || "").substring(0,80)}
@@ -475,6 +544,10 @@ background:${s.trending ? '#ffd54f' : '#f4b942'};
 👁
 </button>
 
+<button onclick="copyScript(${s.id})">
+📋
+</button>
+
 </div>
 
 </div>
@@ -493,6 +566,14 @@ document
 .getElementById("searchInput")
 .value
 .toLowerCase();
+
+currentPage = 1; // reset page ตอนค้นหา
+
+renderSearch(keyword);
+
+}
+
+function renderSearch(keyword){
 
 let list =
 document.getElementById("list");
@@ -524,17 +605,30 @@ return (s.title || "")
 .sort((a,b)=>b.id-a.id);
 
 
-/* ✅ อัปเดตจำนวน */
+/* pagination */
+
+let start =
+(currentPage-1) * perPage;
+
+let end =
+start + perPage;
+
+let pageData =
+filtered.slice(start,end);
+
+
+/* count */
 
 document.getElementById("scriptCount").innerText =
 "All Scripts (" + filtered.length + ")";
 
 
-filtered.forEach((s)=>{
+pageData.forEach((s)=>{
 
 list.innerHTML += createCard(s);
 
 });
+
 
 if(list.innerHTML===""){
 
@@ -553,7 +647,11 @@ color:#777;
 `;
 
 }
-  
+
+/* pagination */
+
+renderPagination(filtered.length);
+
 }
 
 function encodeBase64(text){
@@ -812,7 +910,7 @@ render();
 }
 
 
-/* PREVIEW SCRIPT (SAFE + STABLE) */
+/* PREVIEW SCRIPT (FIXED) */
 
 function previewScript(id){
 
@@ -824,21 +922,16 @@ alert("Script not found");
 return;
 }
 
-
 let s = data.scripts[index];
 
 if(!s.script){
-
 alert("ไม่มีข้อมูล script");
-
 return;
-
 }
 
-let raw =
-s.script;
+/* แปลงให้ปลอดภัย */
 
-/* แปลงให้ปลอดภัยสำหรับ iframe */
+let raw = s.script;
 
 let safeHTML =
 raw
@@ -851,11 +944,8 @@ raw
 let win = window.open("", "_blank");
 
 if(!win){
-
 alert("Popup ถูกบล็อก");
-
 return;
-
 }
 
 win.document.open();
@@ -897,7 +987,33 @@ ${safeHTML}
 win.document.close();
 
 }
-/* SAVE */
+
+function copyScript(id){
+
+let index =
+data.scripts.findIndex(s=>s.id===id);
+
+if(index===-1){
+showToast("❌ Script not found");
+return;
+}
+
+let text =
+data.scripts[index].script;
+
+navigator.clipboard.writeText(text)
+.then(()=>{
+
+showToast("📋 Copied Script");
+
+})
+.catch(()=>{
+
+showToast("❌ Copy failed");
+
+});
+
+}
 
 function download(){
 
