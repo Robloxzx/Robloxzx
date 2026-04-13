@@ -24,6 +24,14 @@
       "thumb": "https://img.youtube.com/vi/8nZ66uuYJEA/maxresdefault.jpg",
       "script": "repeat task.wait() until game:IsLoaded() and game:GetService(\"Players\") and game.Players.LocalPlayer and game.Players.LocalPlayer:FindFirstChild(\"PlayerGui\")\nloadstring(game:HttpGet(\"https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TEDDYHUB-FREEMIUM\"))()",
       "trending": false
+    },
+    {
+      "id": 1776079884703,
+      "title": "test2",
+      "category": "blox",
+      "thumb": "https://img.youtube.com/vi/-lCf-dBK1cs/maxresdefault.jpg",
+      "script": "repeat wait() until game:IsLoaded() and game.Players.LocalPlayer\ngetgenv().team = \"Pirates\" -- Pirates or Marines\nloadstring(game:HttpGet(\"https://raw.githubusercontent.com/vinh129150/hack/refs/heads/main/HopBoss.lua\"))()",
+      "trending": false
     }
   ]
 }
