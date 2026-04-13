@@ -439,7 +439,11 @@ ${escapeHTML(
 ❌
 </button>
 
-<button onclick="toggleTrending(${s.id})">
+<button 
+onclick="toggleTrending(${s.id})"
+style="
+background:${s.trending ? '#ffd54f' : '#f4b942'};
+">
 ⭐
 </button>
 
@@ -756,14 +760,28 @@ if(!script.trending){
 
 if(count>=3){
 
-alert("Trending ได้สูงสุด 3 ตัว");
+showToast("⚠️ Trending ได้สูงสุด 3 ตัว");
 return;
 
 }
 
 }
 
+/* toggle */
+
 script.trending=!script.trending;
+
+/* แจ้งเตือน */
+
+if(script.trending){
+
+showToast("⭐ Set as Trending");
+
+}else{
+
+showToast("⭐ Removed from Trending");
+
+}
 
 render();
 
