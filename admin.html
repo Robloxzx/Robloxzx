@@ -104,6 +104,24 @@ box-shadow:0 6px 16px rgba(0,0,0,0.08);
 transition:0.15s;
 }
 
+/* ⭐ Trending Badge */
+
+.thumbBox{
+position:relative;
+}
+
+.trendingBadge{
+position:absolute;
+top:6px;
+right:6px;
+background:#ffd54f;
+color:#333;
+font-size:12px;
+padding:2px 6px;
+border-radius:6px;
+font-weight:bold;
+}
+
 </style>
 
 </head>
@@ -399,11 +417,17 @@ function createCard(s){
 
 return `
 
-<div class="card">
+<div class="thumbBox">
 
 <img src="${s.thumb || 'https://via.placeholder.com/120'}">
 
-<div style="flex:1;">
+${s.trending ? `
+<div class="trendingBadge">
+⭐ Trending
+</div>
+` : ""}
+
+</div>
 
 <b>
 ${(s.title || "").substring(0,80)}
