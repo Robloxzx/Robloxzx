@@ -16,6 +16,14 @@
       "thumb": "https://img.youtube.com/vi/NxcjNO1i2vw/maxresdefault.jpg",
       "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/kaisenlmao/loader/refs/heads/main/chiyo.lua\"))()",
       "trending": false
+    },
+    {
+      "id": 1776079720682,
+      "title": "test1",
+      "category": "blox",
+      "thumb": "https://img.youtube.com/vi/8nZ66uuYJEA/maxresdefault.jpg",
+      "script": "repeat task.wait() until game:IsLoaded() and game:GetService(\"Players\") and game.Players.LocalPlayer and game.Players.LocalPlayer:FindFirstChild(\"PlayerGui\")\nloadstring(game:HttpGet(\"https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TEDDYHUB-FREEMIUM\"))()",
+      "trending": false
     }
   ]
 }
