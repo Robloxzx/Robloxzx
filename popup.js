@@ -51,14 +51,15 @@ document.addEventListener("DOMContentLoaded", () => {
 }
 
 .pf-btn span{
-  display:flex;
+  display:inline-flex;
   align-items:center;
   line-height:1;
-  transform:translateY(-1px);
 }
 
 #pfEnter{
+  flex-direction:row !important;
   justify-content:flex-start;
+  align-items:center;
 }
 
 #pfEnter span{
