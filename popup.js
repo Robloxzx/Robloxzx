@@ -195,7 +195,7 @@ if(window.lucide){
           done1=true;
           yt1Running=false;
           yt1.className="pf-btn pf-green";
-          yt1.innerHTML='<i data-lucide="check-circle"></i><span>Completed!</span>';
+          yt1.innerHTML='<i data-lucide="check-circle"></i><span>ℂ𝕠𝕞𝕡𝕝𝕖𝕥𝕖𝕕 𝕊𝕦𝕔𝕔𝕖𝕤𝕤𝕗𝕦𝕝𝕝𝕪!</span>';
 lucide.createIcons();
           ytStatus1.classList.add("done");
           ytStatus1.innerText="Success!✅";
