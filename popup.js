@@ -57,6 +57,22 @@ document.addEventListener("DOMContentLoaded", () => {
   transform:translateY(-1px);
 }
 
+#pfEnter{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:4px;
+  padding-top:14px;
+  padding-bottom:14px;
+  min-height:64px;
+}
+
+#pfEnter i{
+  width:22px;
+  height:22px;
+  margin-top:2px;
+}
+
   `;
   document.head.appendChild(style);
 
