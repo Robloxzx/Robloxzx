@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
   position:relative;
   justify-content:center;
   align-items:center;
-  padding-left:44px;
+  padding-left:40px;
 }
 
 #pfEnter span{
