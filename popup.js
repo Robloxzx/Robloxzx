@@ -57,23 +57,19 @@ document.addEventListener("DOMContentLoaded", () => {
 }
 
 #pfEnter{
-  position:relative;
-  justify-content:center;
+  justify-content:flex-start;   /* สำคัญมาก */
   align-items:center;
-  padding-left:88px;
+  padding-left:16px;
 }
 
 #pfEnter span{
-  text-align:center;
+  text-align:left;
 }
 
 #pfEnter i{
+  position:static;   /* เอา absolute ออก */
   width:20px;
   height:20px;
-  position:absolute;
-  left:16px;
-  top:50%;
-  transform:translateY(-50%);
 }
 
   `;
