@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 .pf-btn span{
   display:flex;
   align-items:center;
+  line-height:1;
 }
 
   `;
@@ -172,7 +173,7 @@ if(window.lucide){
           done1=true;
           yt1Running=false;
           yt1.className="pf-btn pf-green";
-          yt1.innerHTML='<i data-lucide="check-circle"></i> Completed!';
+          yt1.innerHTML='<i data-lucide="check-circle"></i><span>Completed!</span>';
 lucide.createIcons();
           ytStatus1.classList.add("done");
           ytStatus1.innerText="Success!✅";
@@ -186,7 +187,7 @@ lucide.createIcons();
           done2=true;
           yt2Running=false;
           yt2.className="pf-btn pf-green";
-          yt1.innerHTML='<i data-lucide="check-circle"></i> Completed!';
+          yt2.innerHTML='<i data-lucide="check-circle"></i><span>Completed!</span>';
 lucide.createIcons();
           ytStatus2.classList.add("done");
           ytStatus2.innerText="Success!✅";
@@ -200,7 +201,7 @@ lucide.createIcons();
           done3=true;
           yt3Running=false;
           yt3.className="pf-btn pf-green";
-          yt1.innerHTML='<i data-lucide="check-circle"></i> Completed!';
+          yt3.innerHTML='<i data-lucide="check-circle"></i><span>Completed!</span>';
 lucide.createIcons();
           ytStatus3.classList.add("done");
           ytStatus3.innerText="Success!✅";
