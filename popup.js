@@ -37,14 +37,14 @@ document.addEventListener("DOMContentLoaded", () => {
         <div style="margin-bottom:10px;color:white;">💡ทำตามขั้นตอน / 𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲 𝗦𝘁𝗲𝗽𝘀</div>
 
         <button id="pfYT1" class="pf-btn pf-red">กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁</button>
-        <div id="pfYTStatus1" class="pf-status">เพื่อปลดล็อกขั้นต่อไป!</div>
+        <div id="pfYTStatus1" class="pf-status">To unlock the next level!</div>
 
         <button id="pfYT2" class="pf-btn pf-red pf-disabled">กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁</button>
-        <div id="pfYTStatus2" class="pf-status">ล็อกอยู่!</div>
+        <div id="pfYTStatus2" class="pf-status">Locked!</div>
 
         <!-- ปุ่มใหม่ -->
         <button id="pfYT3" class="pf-btn pf-red pf-disabled">กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁</button>
-        <div id="pfYTStatus3" class="pf-status">ล็อกอยู่!</div>
+        <div id="pfYTStatus3" class="pf-status">Locked!</div>
 
         <div id="pfProgress" class="pf-progress">
           <div class="pf-barBox"><div id="pfBar" class="pf-bar"></div></div>
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     yt1Running=true;
     lastTime=performance.now();
     yt1.className="pf-btn pf-disabled";
-    ytStatus1.innerText="กรุณาทำตามขั้นตอน...";
+    ytStatus1.innerText="Please follow these steps...";
   };
 
   yt2.onclick=()=>{
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     yt2Running=true;
     lastTime=performance.now();
     yt2.className="pf-btn pf-disabled";
-    ytStatus2.innerText="กรุณาทำตามขั้นตอน...";
+    ytStatus2.innerText="Please follow these steps...";
   };
 
   yt3.onclick=()=>{
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
     yt3Running=true;
     lastTime=performance.now();
     yt3.className="pf-btn pf-disabled";
-    ytStatus3.innerText="กรุณาทำตามขั้นตอน...";
+    ytStatus3.innerText="Please follow these steps...";
   };
 
   setInterval(()=>{
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
           yt1.className="pf-btn pf-green";
           yt1.innerText="𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲𝗱!";
           ytStatus1.classList.add("done");
-          ytStatus1.innerText="สำเร็จแล้ว✅";
+          ytStatus1.innerText="Success!✅";
           yt2.classList.remove("pf-disabled");
         }
       }
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
           yt2.className="pf-btn pf-green";
           yt2.innerText="𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲𝗱!";
           ytStatus2.classList.add("done");
-          ytStatus2.innerText="สำเร็จแล้ว✅";
+          ytStatus2.innerText="Success!✅";
           yt3.classList.remove("pf-disabled");
         }
       }
@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
           yt3.className="pf-btn pf-green";
           yt3.innerText="𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲𝗱!";
           ytStatus3.classList.add("done");
-          ytStatus3.innerText="สำเร็จแล้ว✅";
+          ytStatus3.innerText="Success!✅";
         }
       }
 
