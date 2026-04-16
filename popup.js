@@ -34,7 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="pf-box">
       <div class="pf-mascotWrap"><img src="mascot.png" class="pf-mascot"></div>
       <div class="pf-panel">
-        <div style="margin-bottom:10px;color:white;">💡ทำตามขั้นตอน / 𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲 𝗦𝘁𝗲𝗽𝘀</div>
+        <div style="margin-bottom:10px;color:white;display:flex;align-items:center;gap:8px;justify-content:center;">
+
+<i data-lucide="sparkles"></i>
+
+<span>ทำตามขั้นตอน / 𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲 𝗦𝘁𝗲𝗽𝘀</span>
+
+</div>
 
         <button id="pfYT1" class="pf-btn pf-red">กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁</button>
         <div id="pfYTStatus1" class="pf-status">To unlock the next level!</div>
@@ -57,6 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
   `);
 
+if(window.lucide){
+  lucide.createIcons();
+}
+  
   const mascotWrap = document.querySelector(".pf-mascotWrap");
   const panel = document.querySelector(".pf-panel");
   requestAnimationFrame(()=>{
