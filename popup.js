@@ -58,26 +58,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
 #pfEnter{
   display:flex;
-  flex-direction:row;     /* สำคัญมาก */
+  flex-direction:row !important;   /* ตัวนี้คือหัวใจ */
   align-items:center;
   justify-content:center;
   gap:10px;
 }
 
 #pfEnter i{
-  position:static;        /* กันไอคอนลอย */
   width:20px;
   height:20px;
-  transform:none;
 }
 
 #pfEnter span{
-  display:flex;
+  display:inline-flex;
   align-items:center;
-  transform:none;
 }
 
-  `;
+ `;
   document.head.appendChild(style);
 
   document.body.insertAdjacentHTML("beforeend", `
