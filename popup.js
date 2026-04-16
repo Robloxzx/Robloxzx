@@ -43,9 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
   .pf-percent{text-align:right;font-size:12px;color:#fff;}
   
   .pf-btn i{
-width:18px;
-height:18px;
-vertical-align:middle;
+  width:18px;
+  height:18px;
+  flex-shrink:0;
 }
 
   `;
