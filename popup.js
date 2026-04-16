@@ -26,6 +26,14 @@ document.addEventListener("DOMContentLoaded", () => {
   .pf-barBox{width:100%;height:8px;background:rgba(255,255,255,.1);border-radius:6px;overflow:hidden;}
   .pf-bar{height:100%;width:0%;background:linear-gradient(90deg,yellow,limegreen);}
   .pf-percent{text-align:right;font-size:12px;color:#fff;}
+  
+  .pf-btn i{
+width:18px;
+height:18px;
+margin-right:8px;
+vertical-align:middle;
+}
+
   `;
   document.head.appendChild(style);
 
@@ -42,14 +50,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </div>
 
-        <button id="pfYT1" class="pf-btn pf-red">กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁</button>
+        <button id="pfYT1" class="pf-btn pf-red">
+
+<i data-lucide="thumbs-up"></i>
+
+กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁
+
+</button>
         <div id="pfYTStatus1" class="pf-status">To unlock the next level!</div>
 
-        <button id="pfYT2" class="pf-btn pf-red pf-disabled">กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁</button>
+        <button id="pfYT2" class="pf-btn pf-red pf-disabled">
+
+<i data-lucide="message-circle"></i>
+
+กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁
+
+</button>
         <div id="pfYTStatus2" class="pf-status">Locked!</div>
 
         <!-- ปุ่มใหม่ -->
-        <button id="pfYT3" class="pf-btn pf-red pf-disabled">กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁</button>
+        <button id="pfYT3" class="pf-btn pf-red pf-disabled">
+
+<i data-lucide="video"></i>
+
+กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁
+
+</button>
         <div id="pfYTStatus3" class="pf-status">Locked!</div>
 
         <div id="pfProgress" class="pf-progress">
@@ -57,7 +83,13 @@ document.addEventListener("DOMContentLoaded", () => {
           <div id="pfPercent" class="pf-percent">0%</div>
         </div>
 
-        <button id="pfEnter" class="pf-btn pf-green" style="display:none;">𝗔𝗰𝗰𝗲𝘀𝘀 𝘁𝗵𝗲 𝘀𝗶𝘁𝗲 𝘁𝗼 𝗰𝗼𝗻𝘁𝗶𝗻𝘂𝗲</button>
+        <button id="pfEnter" class="pf-btn pf-green" style="display:none;">
+
+<i data-lucide="unlock"></i>
+
+𝗔𝗰𝗰𝗲𝘀𝘀 𝘁𝗵𝗲 𝘀𝗶𝘁𝗲 𝘁𝗼 𝗰𝗼𝗻𝘁𝗶𝗻𝘂𝗲
+
+</button>
       </div>
     </div>
   </div>
