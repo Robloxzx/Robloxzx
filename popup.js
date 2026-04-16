@@ -58,20 +58,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
 #pfEnter{
   display:flex;
+  flex-direction:row;     /* สำคัญมาก */
   align-items:center;
   justify-content:center;
   gap:10px;
 }
 
 #pfEnter i{
+  position:static;        /* กันไอคอนลอย */
   width:20px;
   height:20px;
+  transform:none;
 }
 
 #pfEnter span{
   display:flex;
   align-items:center;
-  line-height:1;
+  transform:none;
 }
 
   `;
