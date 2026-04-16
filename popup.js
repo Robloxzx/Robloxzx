@@ -63,7 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
 }
 
 #pfEnter span{
-  text-align:left;   /* ให้ข้อความเริ่มจากซ้าย */
+  text-align:center;
+  padding-left:28px;   /* ดันข้อความให้สมดุลกับไอคอน */
   transform:none;
 }
 
