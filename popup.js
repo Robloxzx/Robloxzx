@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 #pfEnter span{
   text-align:left;   /* ให้ข้อความเริ่มจากซ้าย */
+  transform:none;
 }
 
 #pfEnter i{
