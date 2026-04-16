@@ -10,7 +10,17 @@ document.addEventListener("DOMContentLoaded", () => {
   .pf-panel.show{opacity:1; transform:translateY(0);}
   .pf-mascot{width:200px; filter:drop-shadow(0 0 15px rgba(255,255,255,0.6)); animation:aura 2s infinite alternate;}
   @keyframes aura{0%{filter:drop-shadow(0 0 15px rgba(255,255,255,0.4));}50%{filter:drop-shadow(0 0 25px rgba(255,255,255,0.7));}100%{filter:drop-shadow(0 0 15px rgba(255,255,255,0.4));}}
-  .pf-btn{width:100%; padding:12px; margin-top:10px; border:none; border-radius:10px;cursor:pointer; font-weight:bold; transition:.2s; box-shadow:0 0 10px rgba(255,255,255,0.4);}
+  .pf-btn{width:100%; padding:12px; margin-top:10px; border:none; border-radius:10px;cursor:pointer; font-weight:bold; transition:.2s; box-shadow:0 0 10px rgba(255,255,255,0.4);} 
+  
+  display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:8px;
+
+}
   .pf-btn:hover{transform:translateY(-2px);}
   .pf-btn:active{transform:scale(.96);}
   .pf-red{position: relative;overflow: hidden;background: linear-gradient(90deg,#ffd84d,#ffb300,#ff6a00,#ff2a00,#ff0000);box-shadow:inset 0 2px 6px rgba(255,255,255,0.4),inset 0 -4px 8px rgba(0,0,0,0.25),0 0 12px rgba(255,120,0,0.6);color:#fff;}
