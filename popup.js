@@ -24,7 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:8px;
+  gap:10px;
+  min-height:46px;
 }
   .pf-btn:hover{transform:translateY(-2px);}
   .pf-btn:active{transform:scale(.96);}
@@ -43,15 +44,17 @@ document.addEventListener("DOMContentLoaded", () => {
   .pf-percent{text-align:right;font-size:12px;color:#fff;}
   
   .pf-btn i{
-  width:18px;
-  height:18px;
+  width:20px;
+  height:20px;
   flex-shrink:0;
+  vertical-align:middle;
 }
 
 .pf-btn span{
   display:flex;
   align-items:center;
   line-height:1;
+  transform:translateY(-1px);
 }
 
   `;
