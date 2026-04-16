@@ -54,7 +54,7 @@ vertical-align:middle;
 
 <i data-lucide="thumbs-up"></i>
 
-กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁
+𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁
 
 </button>
         <div id="pfYTStatus1" class="pf-status">To unlock the next level!</div>
@@ -63,7 +63,7 @@ vertical-align:middle;
 
 <i data-lucide="message-circle"></i>
 
-กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁
+𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁
 
 </button>
         <div id="pfYTStatus2" class="pf-status">Locked!</div>
@@ -73,7 +73,7 @@ vertical-align:middle;
 
 <i data-lucide="video"></i>
 
-กดไลก์ คอมเมนต์ / 𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁
+𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁
 
 </button>
         <div id="pfYTStatus3" class="pf-status">Locked!</div>
