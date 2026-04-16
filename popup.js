@@ -58,19 +58,16 @@ document.addEventListener("DOMContentLoaded", () => {
 }
 
 #pfEnter{
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap:4px;
-  padding-top:14px;
-  padding-bottom:14px;
-  min-height:64px;
+  justify-content:flex-start;
+}
+
+#pfEnter span{
+  text-align:left;   /* ให้ข้อความเริ่มจากซ้าย */
 }
 
 #pfEnter i{
-  width:22px;
-  height:22px;
-  margin-top:2px;
+  width:20px;
+  height:20px;
 }
 
   `;
@@ -154,7 +151,7 @@ if(window.lucide){
 
   yt1.onclick=()=>{
     if(done1) return;
-    window.open("https://youtu.be/-lCf-dBK1cs");
+    window.open("https://youtu.be/-lCf-dBK1cs","_blank");
     yt1Running=true;
     lastTime=performance.now();
     yt1.className="pf-btn pf-disabled";
@@ -163,7 +160,7 @@ if(window.lucide){
 
   yt2.onclick=()=>{
     if(!done1||done2) return;
-    window.open("https://youtu.be/DHsN-UjeDdU");
+    window.open("https://youtu.be/DHsN-UjeDdU","_blank");
     yt2Running=true;
     lastTime=performance.now();
     yt2.className="pf-btn pf-disabled";
@@ -172,7 +169,7 @@ if(window.lucide){
 
   yt3.onclick=()=>{
     if(!done2||done3) return;
-    window.open("https://youtu.be/7ODi4G1S7oI");
+    window.open("https://youtu.be/7ODi4G1S7oI","_blank");
     yt3Running=true;
     lastTime=performance.now();
     yt3.className="pf-btn pf-disabled";
