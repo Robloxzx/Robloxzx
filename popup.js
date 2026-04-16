@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 #pfEnter span{
   display:inline-flex;
   align-items:center;
-  transform:translateY(-4px);
+  transform:translateY(-6px);
 }
 
  `;
