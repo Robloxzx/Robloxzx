@@ -172,7 +172,8 @@ if(window.lucide){
           done1=true;
           yt1Running=false;
           yt1.className="pf-btn pf-green";
-          yt1.innerText="𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲𝗱!";
+          yt1.innerHTML='<i data-lucide="check-circle"></i> Completed!';
+lucide.createIcons();
           ytStatus1.classList.add("done");
           ytStatus1.innerText="Success!✅";
           yt2.classList.remove("pf-disabled");
@@ -185,7 +186,8 @@ if(window.lucide){
           done2=true;
           yt2Running=false;
           yt2.className="pf-btn pf-green";
-          yt2.innerText="𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲𝗱!";
+          yt1.innerHTML='<i data-lucide="check-circle"></i> Completed!';
+lucide.createIcons();
           ytStatus2.classList.add("done");
           ytStatus2.innerText="Success!✅";
           yt3.classList.remove("pf-disabled");
@@ -198,7 +200,8 @@ if(window.lucide){
           done3=true;
           yt3Running=false;
           yt3.className="pf-btn pf-green";
-          yt3.innerText="𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲𝗱!";
+          yt1.innerHTML='<i data-lucide="check-circle"></i> Completed!';
+lucide.createIcons();
           ytStatus3.classList.add("done");
           ytStatus3.innerText="Success!✅";
         }
