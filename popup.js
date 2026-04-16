@@ -40,7 +40,6 @@ gap:8px;
   .pf-btn i{
 width:18px;
 height:18px;
-margin-right:8px;
 vertical-align:middle;
 }
 
