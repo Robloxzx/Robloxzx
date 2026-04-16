@@ -54,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
   display:inline-flex;
   align-items:center;
   line-height:1;
-  transform:translateY(-3px);  /* ยกข้อความขึ้น */
 }
 
 #pfEnter{
@@ -64,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
 }
 
 #pfEnter span{
-  text-align:left;
+  transform:translateY(-3px);
 }
 
 #pfEnter i{
