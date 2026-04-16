@@ -60,12 +60,11 @@ document.addEventListener("DOMContentLoaded", () => {
   position:relative;
   justify-content:center;
   align-items:center;
+  padding-left:44px;
 }
 
 #pfEnter span{
   text-align:center;
-  padding-left:28px;   /* ดันข้อความให้สมดุลกับไอคอน */
-  transform:none;
 }
 
 #pfEnter i{
@@ -74,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
   position:absolute;
   left:16px;
   top:50%;
-transform:translateY(-50%);
+  transform:translateY(-50%);
 }
 
   `;
