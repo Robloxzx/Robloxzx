@@ -57,9 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
 }
 
 #pfEnter{
-  flex-direction:row !important;
-  justify-content:flex-start;
-  align-items:center;
+  position:relative;
+  justify-content:center;
 }
 
 #pfEnter span{
@@ -69,6 +68,8 @@ document.addEventListener("DOMContentLoaded", () => {
 #pfEnter i{
   width:20px;
   height:20px;
+  position:absolute;
+  left:16px;
 }
 
   `;
