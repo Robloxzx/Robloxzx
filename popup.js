@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
   align-items:center;
   justify-content:center;
   gap:10px;
+  min-height:46px;
 }
 
 #pfEnter i{
