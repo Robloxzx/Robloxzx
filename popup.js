@@ -48,6 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
   flex-shrink:0;
 }
 
+.pf-btn span{
+  display:flex;
+  align-items:center;
+}
+
   `;
   document.head.appendChild(style);
 
@@ -63,46 +68,33 @@ document.addEventListener("DOMContentLoaded", () => {
 <span>ทำตามขั้นตอน / 𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲 𝗦𝘁𝗲𝗽𝘀</span>
 
 </div>
-
-        <button id="pfYT1" class="pf-btn pf-red">
-
-<i data-lucide="thumbs-up"></i>
-
-𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁
-
+<button id="pfYT1" class="pf-btn pf-red">
+  <i data-lucide="thumbs-up"></i>
+  <span>𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁</span>
 </button>
-        <div id="pfYTStatus1" class="pf-status">To unlock the next level!</div>
+<div id="pfYTStatus1" class="pf-status">To unlock the next level!</div>
 
-        <button id="pfYT2" class="pf-btn pf-red pf-disabled">
-
-<i data-lucide="message-circle"></i>
-
-𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁
-
+<button id="pfYT2" class="pf-btn pf-red pf-disabled">
+  <i data-lucide="message-circle"></i>
+  <span>𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁</span>
 </button>
-        <div id="pfYTStatus2" class="pf-status">Locked!</div>
+<div id="pfYTStatus2" class="pf-status">Locked!</div>
 
         <!-- ปุ่มใหม่ -->
-        <button id="pfYT3" class="pf-btn pf-red pf-disabled">
-
-<i data-lucide="video"></i>
-
-𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁
-
+<button id="pfYT3" class="pf-btn pf-red pf-disabled">
+  <i data-lucide="video"></i>
+  <span>𝗟𝗶𝗸𝗲 & 𝗖𝗼𝗺𝗺𝗲𝗻𝘁</span>
 </button>
-        <div id="pfYTStatus3" class="pf-status">Locked!</div>
+<div id="pfYTStatus3" class="pf-status">Locked!</div>
 
         <div id="pfProgress" class="pf-progress">
           <div class="pf-barBox"><div id="pfBar" class="pf-bar"></div></div>
           <div id="pfPercent" class="pf-percent">0%</div>
         </div>
 
-        <button id="pfEnter" class="pf-btn pf-green" style="display:none;">
-
-<i data-lucide="unlock"></i>
-
-𝗔𝗰𝗰𝗲𝘀𝘀 𝘁𝗵𝗲 𝘀𝗶𝘁𝗲 𝘁𝗼 𝗰𝗼𝗻𝘁𝗶𝗻𝘂𝗲
-
+<button id="pfEnter" class="pf-btn pf-green" style="display:none;">
+  <i data-lucide="unlock"></i>
+  <span>𝗔𝗰𝗰𝗲𝘀𝘀 𝘁𝗵𝗲 𝘀𝗶𝘁𝗲 𝘁𝗼 𝗰𝗼𝗻𝘁𝗶𝗻𝘂𝗲</span>
 </button>
       </div>
     </div>
